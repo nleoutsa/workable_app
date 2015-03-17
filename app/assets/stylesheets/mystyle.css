@@ -237,17 +237,22 @@ Custom Styles:
 *************************************************************************************************
 */
 
+p {
+  height: 1em;
+  line-height: 1;
+}
+
 /*custom font*/
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
 
 /*form styles*/
-#msform {
-  width: 400px;
+#multi-step-form {
+  width: 35vw;
   float: left;
   text-align: center;
   position: relative; /* was relative */
 }
-#msform fieldset {
+#multi-step-form fieldset {
   background: white;
   border: 0 none;
   border-radius: 3px;
@@ -262,11 +267,11 @@ Custom Styles:
   position: absolute;
 }
 /*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
+#multi-step-form fieldset:not(:first-of-type) {
   display: none;
 }
 /*inputs*/
-#msform input, #msform textarea {
+#multi-step-form input, #multi-step-form textarea {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -278,28 +283,28 @@ Custom Styles:
   font-size: 13px;
 }
 /*buttons*/
-#msform .action-button {
+#multi-step-form .action-button {
   width: 100px;
   background: #33b6cb;
   font-weight: bold;
   color: white;
   border: 0 none;
-  border-radius: 1px;
+  border-radius: 2px;
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
 }
-#msform .action-button:hover, #msform .action-button:focus {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+#multi-step-form .action-button:hover, #multi-step-form .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(51,182,203, 0.8);
 }
 /*headings*/
-.fs-title {
+.frame-title {
   font-size: 15px;
   text-transform: uppercase;
   color: #2C3E50;
   margin-bottom: 10px;
 }
-.fs-subtitle {
+.frame-subtitle {
   font-weight: normal;
   font-size: 13px;
   color: #666;
@@ -324,6 +329,7 @@ progressbar container
   counter-reset: step;
 }
 #progressbar li {
+
   list-style-type: none;
   color: #33b6cb;
   text-transform: uppercase;
@@ -366,11 +372,10 @@ progressbar container
 }
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
+#progressbar li.showing:before,  #progressbar li.showing:after{
   background: #33b6cb;
   color: white;
 }
-
 /*
 *************************************************************************************************
 letter TOOL
@@ -378,7 +383,6 @@ letter TOOL
 */
 
 #letter-tool  {
-  width: 95%;
   margin: auto;
 }
 
@@ -394,6 +398,7 @@ letter
   float: right;
   border: 1px solid black;
   margin: 0 auto 5% auto;
+  margin-right: 3.5vw;
 }
 
 #letter {
@@ -405,18 +410,30 @@ letter
   margin-top: 5vw;
   margin-left: 3vw;
   list-style-type: none;
-  font-size: 1vw;
+  font-size: 1.2vw;
 }
 
-@media screen and (max-width: 1175px) {
-  #letter-container {
+@media screen and (max-width: 1150px) {
+
+
+  #multi-step-form {
+    width: 90vw;
     float: none;
-    clear: both;
+    margin: 0 auto;
+    text-align: center;
+    position: relative; /* was relative */
   }
-  #letter {
+
+  #letter-container {
+    margin: 0 6.5vw;
+    margin-top: 360px;
+    margin-bottom: 100px;
+
     height: 110vw;
     width: 85vw;
-    font-size: 2vw;
+  }
+  #letter {
+    margin: none;
   }
 
 }
@@ -432,7 +449,7 @@ live type
 #company-address,
 #company-phone
   {
-  width: 200px;
+  width: 15vw;
   word-wrap: break-word;
 }
 

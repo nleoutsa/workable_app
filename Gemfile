@@ -32,8 +32,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#The controller-level `respond_to' feature has been extracted to the `responders` gem. Add it to your Gemfile to continue using this feature:
+gem 'responders', '~> 2.0'
 
 gem 'thin'
+
+# Use htmltoword to convert to .docx
+gem 'htmltoword'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
