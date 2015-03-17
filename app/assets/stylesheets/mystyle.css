@@ -407,12 +407,16 @@ letter
 }
 
 #letter li {
-  margin-top: 5vw;
+  margin-top: 1vw;
   margin-left: 3vw;
   list-style-type: none;
   font-size: 1.2vw;
 }
 
+
+#letter li:first-of-type {
+  margin-top: 5vw;
+}
 @media screen and (max-width: 1150px) {
 
 

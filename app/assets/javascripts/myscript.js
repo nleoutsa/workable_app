@@ -14,6 +14,7 @@ $(document).ready(function () {
 
 
 
+
 // VARIABLES
   var current_frame, next_frame, previous_frame; // set up frames for each section of form
   var right, opacity, scale; //frame properties which we will animate
@@ -23,9 +24,9 @@ $(document).ready(function () {
 
 
 
-    previous_frame = $("fieldset").eq(0);
-    current_frame = $("fieldset").eq(0);
-    next_frame = $("fieldset").eq(0);
+  previous_frame = $("fieldset").eq(0);
+  current_frame = $("fieldset").eq(0);
+  next_frame = $("fieldset").eq(0);
 
 
 // switch to correct fieldset when clicking on progress bar
