@@ -1,0 +1,3 @@
+rtf_document(:page_layout => :landscape) do |rtf|
+  @people.each {|person| rtf << person}
+end

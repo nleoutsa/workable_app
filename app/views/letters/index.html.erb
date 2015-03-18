@@ -37,6 +37,7 @@
       <!--  <input type="" name="company state" id='company-state'/>  -->
       <input type="text" name="company phone" placeholder="Company Phone" id='company-phone'/>
       <input type="button" name="next" class="next action-button" value="Next" />
+      <span><%= link_to "index rtf example", {:controller => :letters, :action => :index}%></span>
     </fieldset>
     <fieldset>
       <h2 class="frame-title">Applicant Info</h2>
@@ -73,7 +74,8 @@
       <input type="password" name="cpass" placeholder="Confirm Password" />
       <input type="button" name="previous" class="previous action-button" value="Previous" />
       <input type="submit" name="submit" class="submit action-button" value="Submit" />
-      <span><%= link_to "Export as .rtf", {:controller => :letters, :action => :export}, {:method => :put } %></span>
+      <span><%= link_to "Export as .rtf", {:controller => :letters, :action => :export}%></span> <!-- , {:method => :put } -->
+
     </fieldset>
   </form>
 

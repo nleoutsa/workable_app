@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 resources :letters do
-  put :export, :on => :collection
+  get :export, :on => :collection
 end
 
 root 'letters#index'
