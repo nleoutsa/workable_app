@@ -1,0 +1,4 @@
+rtf_document(:force_download=>true) do |rtf|
+  render "letter", :rtf => rtf
+  rtf << "Hello World"
+end
