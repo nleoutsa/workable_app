@@ -81,10 +81,11 @@ $(document).ready(function () {
     previous_fieldset();
   });
 
+/*
   $(".submit").click(function(){
     return false; // do nothing with form for now... replace with email/download/pdf/copy... accordian menu later?
   });
-
+*/
   function next_fieldset() {
 
     //activate next step on progressbar using the index of next_fs
