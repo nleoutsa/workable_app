@@ -11,9 +11,10 @@ $(document).ready(function () {
     }
   });
 
+    $('#letter').click(function() {
+        my_html = $('#letter')[0].outerHTML;
 
-
-
+    });
 
 // VARIABLES
   var current_frame, next_frame, previous_frame; // set up frames for each section of form
@@ -81,11 +82,11 @@ $(document).ready(function () {
     previous_fieldset();
   });
 
-/*
+
   $(".submit").click(function(){
     return false; // do nothing with form for now... replace with email/download/pdf/copy... accordian menu later?
   });
-*/
+
   function next_fieldset() {
 
     //activate next step on progressbar using the index of next_fs

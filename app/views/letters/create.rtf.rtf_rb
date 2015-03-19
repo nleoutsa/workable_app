@@ -1,0 +1,4 @@
+
+rtf_document(:force_download=>true, :filename=>'create.rtf') do |rtf|
+  rtf << "something else"
+end

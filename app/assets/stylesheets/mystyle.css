@@ -245,18 +245,19 @@ p {
 /*custom font*/
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
 
+
 /*form styles*/
 #multi-step-form {
   width: 35vw;
   float: left;
   text-align: center;
-  position: relative; /* was relative */
+  top: 25%;
+  position: fixed; /* was relative */
 }
 #multi-step-form fieldset {
   background: white;
-  border: 0 none;
-  border-radius: 3px;
-  box-shadow: 0 0 15px 1px rgba(51,182,203, 0.4);
+  border: 3px solid #33b6cb;
+  border-radius: 5px;
   padding: 20px 30px;
 
   box-sizing: border-box;
@@ -358,7 +359,7 @@ progressbar container
 #progressbar li:after {
   content: '';
   width: 100%;
-  height: 2px;
+  height: 1px;
   background: white;
   position: absolute;
   left: -50%;
@@ -406,17 +407,32 @@ letter
   width: 60vw;
 }
 
+
+#letter-list {
+  margin-left: 40vw;
+}
+
 #letter li {
-  margin-top: 1vw;
-  margin-left: 3vw;
   list-style-type: none;
   font-size: 1.2vw;
+}
+.top-right
+  {
+  width: 15vw;
+  height: 100%;
+  word-wrap: break-word;
+  text-align: right;
 }
 
 
 #letter li:first-of-type {
   margin-top: 5vw;
 }
+
+
+
+
+
 @media screen and (max-width: 1150px) {
 
 
@@ -430,7 +446,7 @@ letter
 
   #letter-container {
     margin: 0 6.5vw;
-    margin-top: 360px;
+    margin-top: 410px;
     margin-bottom: 100px;
 
     height: 110vw;
@@ -438,6 +454,26 @@ letter
   }
   #letter {
     margin: none;
+  }
+
+  #letter-list {
+    margin-left: 56.66666vw;
+  }
+
+  #letter li {
+    font-size: 1.7vw;
+  }
+
+  #letter li:first-of-type {
+  margin-top: 7.08333333vw;
+}
+
+  .top-right
+    {
+    width: 21.5vw;
+    height: 100%;
+    word-wrap: break-word;
+    text-align: right;
   }
 
 }
@@ -449,13 +485,6 @@ live type
 *************************************************************************************************
 */
 
-#company-name,
-#company-address,
-#company-phone
-  {
-  width: 15vw;
-  word-wrap: break-word;
-}
 
 /*
 *************************************************************************************************
@@ -473,4 +502,3 @@ Header
   box-sizing: border-box;
   background-origin: padding-box;
 }
-
