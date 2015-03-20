@@ -11,14 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318010507) do
+ActiveRecord::Schema.define(version: 20150319193440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "letters", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "co_name"
+    t.string   "co_address_1"
+    t.string   "co_address_2"
+    t.string   "ap_name"
+    t.string   "ap_address_1"
+    t.string   "ap_address_2"
+    t.string   "pos_title"
+    t.string   "co_city_state_zip"
+    t.string   "ap_city_state_zip"
+    t.date     "start_date"
+    t.string   "supervisor"
+    t.date     "expiry_date"
   end
 
 end

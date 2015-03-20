@@ -45,7 +45,6 @@ gem 'rtf'
 # integrates rtf library with rails
 gem 'rtf_rails'
 
-gem 'nokogiri'
 
 
 group :development, :test do

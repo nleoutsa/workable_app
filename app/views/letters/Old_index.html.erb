@@ -1,19 +1,32 @@
- <td><%= link_to 'New', new_letter_path %></td>
+<div class="header-image"></div>
+
+<section id="progressbar-container">
+  <ul id="progressbar">
+    <li class="showing">Company Info</li>
+    <li>Applicant Info</li>
+    <li>Position Info</li>
+    <li>Benefits</li>
+    <li>Other Info</li>
+  </ul>
+</section>
+
+<div id="letter-tool">
+  <%= render partial: 'letter' %>
+  <%= render partial: 'form' %>
+</div>
+
 <table>
   <thead>
     <tr>
-      <th>co_name</th>
-      <th>co_address_1</th>
-      <th>co_address_2</th>
-      <th>co_city_state_zip</th>
-      <th>ap_name</th>
-      <th>ap_address_1</th>
-      <th>ap_address_2</th>
-      <th>ap_city_state_zip</th>
-      <th>pos_title</th>
-      <th>supervisor</th>
-      <th>start_date</th>
-      <th>expiry_date</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Available at</th>
+      <th>Tags</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -23,20 +36,10 @@
       <td><%= letter.co_name %></td>
       <td><%= letter.co_address_1 %></td>
       <td><%= letter.co_address_2 %></td>
-      <td><%= letter.co_city_state_zip %></td>
-
       <td><%= letter.ap_name %></td>
       <td><%= letter.ap_address_1 %></td>
       <td><%= letter.ap_address_2 %></td>
-      <td><%= letter.ap_city_state_zip %></td>
-
       <td><%= letter.pos_title %></td>
-      <td><%= letter.supervisor %></td>
-
-      <td><%= letter.start_date %></td>
-
-      <td><%= letter.expiry_date %></td>
-
       <td><%= link_to 'Show', letter %></td>
       <td><%= link_to 'Edit (with steps)', edit_letter_path(letter) %></td>
       <td><%= link_to 'Destroy', letter, method: :delete, data: { confirm: 'Are you sure?' } %></td>

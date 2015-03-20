@@ -1,19 +1,18 @@
 
-
 $(document).ready(function () {
-
-
 // live print text in from form-fields into letter based on ids
+
   $('input').focus(function() {
     inputField = document.activeElement;
     inputField.onkeyup = function(){
+      $('#letter').css(inputField.value,'rgba(200,50,100,0.3)');
       document.getElementById(inputField.id).innerHTML = inputField.value;
+
     }
   });
 
     $('#letter').click(function() {
-        my_html = $('#letter')[0].outerHTML;
-
+      $('#letter').css('background-color','rgba(50,200,100,0.3)');
     });
 
 // VARIABLES
@@ -129,5 +128,4 @@ $(document).ready(function () {
       }
     });
   }
-
 });

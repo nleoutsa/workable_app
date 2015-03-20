@@ -3,12 +3,34 @@
 <head>
   <title>WorkableApp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div class="header-image"></div>
+
 <%= yield %>
+
+<input id="okay" type="text" name="okay" placeholder="okay?">
+
+<div id="okay">
+  <p id="okay">yes.</p>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('input').focus(function() {
+      inputField = document.activeElement;
+      inputField.onkeyup = function(){
+        alert(inputField.value);
+        $('#letter').css("background-color",'rgba(200,50,100,0.3)');
+        document.getElementById(inputField.id).innerHtml = "<p>hi<p>";
+
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

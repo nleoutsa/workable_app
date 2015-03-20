@@ -1,7 +1,6 @@
 
   <form id="multi-step-form">
 
-    <span><%= link_to "Export as .rtf", {:controller => :letters, :action => :download}%></span>
 
     <!-- SIGN UP FORM FIELD
     <fieldset>
@@ -15,6 +14,11 @@
     -->
 
     <fieldset>
+
+      <span>
+        <%= link_to "Export as .rtf", {:controller => :letters, :action => :download}, {:method => :post} %>
+      </span>
+
       <h2 class="frame-title">Company Info</h2>
       <h3 class="frame-subtitle">Step 1 of 5</h3>
       <input type="text" name="company" placeholder="Company Name" id='company-name'/>

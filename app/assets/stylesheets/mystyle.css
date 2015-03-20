@@ -238,13 +238,12 @@ Custom Styles:
 */
 
 p {
-  height: 1em;
+  height: 100%;
   line-height: 1;
 }
 
 /*custom font*/
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
-
 
 /*form styles*/
 #multi-step-form {
@@ -259,7 +258,6 @@ p {
   border: 3px solid #33b6cb;
   border-radius: 5px;
   padding: 20px 30px;
-
   box-sizing: border-box;
   width: 80%;
   margin: 0 10%;
@@ -339,6 +337,8 @@ progressbar container
   float: left;
   position: relative;
   text-align: center;
+
+  cursor: pointer;
 }
 #progressbar li:before {
   content: counter(step);
@@ -443,7 +443,9 @@ letter
     text-align: center;
     position: relative; /* was relative */
   }
-
+  #multi-step-form .action-button {
+    width: 80px;
+  }
   #letter-container {
     margin: 0 6.5vw;
     margin-top: 410px;
@@ -471,7 +473,6 @@ letter
   .top-right
     {
     width: 21.5vw;
-    height: 100%;
     word-wrap: break-word;
     text-align: right;
   }
