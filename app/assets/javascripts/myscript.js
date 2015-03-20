@@ -5,8 +5,10 @@ $(document).ready(function () {
   $('input').focus(function() {
     inputField = document.activeElement;
     inputField.onkeyup = function(){
-      $('#letter').css(inputField.value,'rgba(200,50,100,0.3)');
-      document.getElementById(inputField.id).innerHTML = inputField.value;
+      text = inputField.value;
+      input_class = "." + inputField.id;
+      $(input_class).html(text);
+
 
     }
   });

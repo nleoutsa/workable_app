@@ -9,7 +9,6 @@
   </ul>
 </section>
 
-
 <%= form_for @letter, html: {id: "multi-step-form"} do |f| %>
 
   <fieldset>
@@ -72,31 +71,31 @@
 <section id="letter-container">
   <div id="letter">
     <ul id="letter-list">
-      <li><p class="top-right" id='letter_co_name'>Company Name</p></li>
-      <li><p class="top-right" id="letter_co_address_1">Company Address</p></li>
-      <li><p class="top-right" id='letter_co_address_2'>Company Address cont.</p></li>
-      <li><p class="top-right" id='letter_co_city_state_zip'>City, State Zip</p></li>
+      <li><p class="top-right letter_co_name">Company Name</p></li>
+      <li><p class="top-right letter_co_address_1">Company Address</p></li>
+      <li><p class="top-right letter_co_address_2">Company Address cont.</p></li>
+      <li><p class="top-right letter_co_city_state_zip">City, State Zip</p></li>
     </ul>
 
     <ul>
-      <li><p class="applicant-info" id="letter_ap_name">Applicant Name</p></li>
-      <li><p class="applicant-info" id='letter_ap_address_1'>Applicant Address</p></li>
-      <li><p class="applicant-info" id='letter_ap_address_2'>Applicant Address cont.</p></li>
-      <li><p class="applicant-info" id='letter_ap_city_state_zip'>City, State Zip</p></li>
+      <li><p class="applicant-info letter_ap_name">Applicant Name</p></li>
+      <li><p class="applicant-info letter_ap_address_1">Applicant Address</p></li>
+      <li><p class="applicant-info letter_ap_address_2">Applicant Address cont.</p></li>
+      <li><p class="applicant-info letter_ap_city_state_zip">City, State Zip</p></li>
     </ul>
 
     <ul>
-      <li>Dear <span id="applicant-name">Applicant Name</span>,</li>
+      <li>Dear <span class="applicant-name">Applicant Name</span>,</li>
       <li><p></p></li>
-      <li><span class="company-info" id='company-name'>Company Name</span> is pleased to offer you employment on the following terms:</li>
+      <li><span class="company-info letter_co_name">Company Name</span> is pleased to offer you employment on the following terms:</li>
       <li><p></p></li>
     </ul>
 
     <ul>
-      <li><p class="applicant-info" id='letter_pos_title'>Position Title</p></li>
-      <li><p class="applicant-info" id='letter_supervisor'>Supervisor's Name</p></li>
-      <li><p class="applicant-info" id='letter_start_date'>Company Name</p></li>
-      <li><p class="applicant-info" id='letter_expiry_date'>Company Name</p></li>
+      <li><p class="applicant-info letter_pos_title">Position Title</p></li>
+      <li><p class="applicant-info letter_supervisor">Supervisor's Name</p></li>
+      <li><p class="applicant-info letter_start_date">Company Name</p></li>
+      <li><p class="applicant-info letter_expiry_date">Company Name</p></li>
     </ul>
   </div>
 </section>
