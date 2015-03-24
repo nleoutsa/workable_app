@@ -1,6 +1,6 @@
 class Letter < ActiveRecord::Base
 
-# include ActiveModel::Model
+ include ActiveModel::Model
   attr_accessor :co_email, :string
   validates :co_name, :ap_name, :co_email, presence: true
  # validates_format_of :co_email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
