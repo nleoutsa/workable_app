@@ -67,8 +67,7 @@
     <h2 class="frame-title">Other Information</h2>
     <h3 class="frame-subtitle">Step 5 of 5</h3>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <%= f.error_notification %>
-    <%= f.input :email, label: false, :placeholder => 'Your email address...' %> <br/>
+    <%= f.text_field :ap_email, label: false, :placeholder => 'Your email address...' %> <br/>
     <%= f.submit "Download", :class => "action-button" %>
   </fieldset>
 <% end %>
