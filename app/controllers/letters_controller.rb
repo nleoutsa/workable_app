@@ -30,6 +30,51 @@ class LettersController < ApplicationController
     puts params.inspect
   end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   def create
 
 
@@ -38,12 +83,6 @@ class LettersController < ApplicationController
     logger.debug params.inspect
     puts params.inspect
 
-    if @letter.valid?
-      @letter.subscribe
-      flash[:notice] = "emailed!"
-    else
-      redirect_to @letter
-    end
 
     if @letter.save
 
@@ -72,9 +111,25 @@ class LettersController < ApplicationController
       @ap_wage = params[:letter][:ap_wage]
 
 
+####
+#      @hrs =
+#
+#      benefits(checkbox):
+#
+#      pay_period(dropdown):        weekly
+#                                   bi-weekly
+#                                   monthly
+
+#      contingencies(checkbox):     drug-test
+#                                   background check
+#
+#
+#
+#
+####
       styles = {}
       styles['Para_Style'] = ParagraphStyle.new
-      styles['Char_Style'] = CharacterStyle.new
+      styles['BOLD'] = CharacterStyle.new
       styles['Justify'] = ParagraphStyle.new
       styles['Justify'].justification = ParagraphStyle::FULL_JUSTIFY
 
@@ -82,7 +137,7 @@ class LettersController < ApplicationController
 
 
     #  styles['Char_Style'].font        = Font.new(Font::MODERN, 'Courier')
-      styles['Char_Style'].bold        = true
+      styles['BOLD'].bold        = true
 
       document.paragraph(styles['Para_Style']) do |n1|
         n1.line_break
@@ -112,152 +167,56 @@ class LettersController < ApplicationController
         n1 << ","
         n1.line_break
         n1.line_break
-        n1 << @co_name
-        n1 << " is pleased to offer you employment on the following terms:"
-        n1.line_break
 
       end
 
       document.paragraph(styles['Justify']) do |n1|
-        n1 << "1. "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Position. "
-        end
-        n1 << "Your title will be "
-        n1 <<  @pos_title
-        n1 << ", and you will report to "
-        n1 << @supervisor
-        n1 << ".  Your start date is "
+        n1 << "It is with great excitement that I extend this offer of employment with "
+        n1 << @co_name
+        n1 << " for the position of "
+        n1 << @pos_title
+        n1 << ". Provided is a summary of terms and conditions of your anticipated employment with us. If you accept this offer, your start date will be "
         n1 << @start_date
-        n1 << ".  This is a part-time position. While you render services to "
-        n1 << @co_name
-        n1 << ", you are free to engage in other employment, consulting, or other business activity as long as it does not create a conflict of interest with "
-        n1 << @co_name
-        n1 << ".  By signing this letter agreement, you confirm to "
-        n1 << @co_name
-        n1 << " that you have no contractual commitments or other legal obligations that would prohibit you from performing your duties for "
-        n1 << @co_name
+        n1 << " or another mutually agreed upon date and you would report to "
+        n1 << @supervisor
+        n1 << ". We look forward to adding you to our team."
         n1.line_break
-
       end
 
       document.paragraph(styles['Justify']) do |n1|
-        n1 << "2. "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Cash Compensation. "
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Hours and Compensation. "
         end
-        n1 << "The Company will pay hourly at a rate of $"
+        n1.line_break
+        n1 << "This is a full-time, exempt position requiring approximately "
+        n1 << @hrs
+        n1 << " per week. "
+        n1.line_break
+        n1.line_break
+        n1 << "Your compensation package includes base pay and the following:"
+        n1.line_break
+        n1 << "OPTIONS"
+        n1.line_break
+        n1.line_break
+        n1 << "You base salary will be "
         n1 << @ap_wage
-        n1 << ", payable in accordance with "
-        n1 << @co_name
-        n1 << "'s standard payroll schedule.  This wage will be subject to adjustment pursuant to "
-        n1 << @co_name
-        n1 << "’s employee compensation policies in effect from time to time."
-        n1.line_break
-
+        n1 << " delivered "
+        n1 << @pay_period
+        n1 << ". Standard tax deductions will be made pursuant to state and federal law."
       end
 
       document.paragraph(styles['Justify']) do |n1|
-        n1 << "3. "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Employee Benefits. "
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Conditions for Employment. "
         end
-        n1 << "As a part-time employee of "
-        n1 << @co_name
-        n1 << ", you will not be eligible for Company-sponsored benefits or paid vacation."
         n1.line_break
-
+        n1 << "This offer is contingent upon proof of eligibility to work in the United States (which must be provided per the terms of the Immigration and Reform Act) and completion of "
+        n1.line_break
+        n1 << "OPTIONS"
+        n1.line_break
+        n1 << "You will be required to submit the proper paperwork to confirm your eligibility and tax status. This includes I-9 and W-4 forms, which will be provided."
       end
 
-      document.paragraph(styles['Justify']) do |n1|
-        n1 << "4. "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Proprietary Information and Inventions Agreement. "
-        end
-        n1 << "Like all Company employees, you will be required, as a condition of your employment with "
-        n1 << @co_name
-        n1 << " to sign "
-        n1 << @co_name
-        n1 << "’s standard Proprietary Information and Inventions Agreement."
-        n1.line_break
-
-      end
-
-      document.paragraph(styles['Justify']) do |n1|
-        n1 << "5. "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Employment Relationship. "
-        end
-        n1 << "Employment with "
-        n1 << @co_name
-        n1 << " is for no specific period of time.  Your employment with "
-        n1 << @co_name
-        n1 << " will be \"at will,\" meaning that either you or "
-        n1 << @co_name
-        n1 << " may terminate your employment at any time and for any reason, with or without cause.  Any contrary representations that may have been made to you are superseded by this letter agreement.  This is the full and complete agreement between you and "
-        n1 << @co_name
-        n1 << " on this term.  Although your job duties, title, compensation and benefits, as well as "
-        n1 << @co_name
-        n1 << "’s personnel policies and procedures, may change from time to time, the “at will” nature of your employment may only be changed in an express written agreement signed by you and a duly authorized officer of "
-        n1 << @co_name
-        n1 << " (other than you)."
-        n1.line_break
-
-      end
-
-      document.paragraph(styles['Justify']) do |n1|
-        n1 << "6. "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Tax Matters. "
-        end
-        n1.line_break
-        n1.line_break
-        n1 << "(a) "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Withholding. "
-        end
-        n1 << "All forms of compensation referred to in this letter agreement are subject to reduction to reflect applicable withholding and payroll taxes and other deductions required by law."
-        n1.line_break
-        n1.line_break
-        n1 << "(b) "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Tax Advice. "
-        end
-        n1 << "You are encouraged to obtain your own tax advice regarding your compensation from "
-        n1 << @co_name
-        n1 << ".  You agree that "
-        n1 << @co_name
-        n1 << " does not have a duty to design its compensation policies in a manner that minimizes your tax liabilities, and you will not make any claim against "
-        n1 << @co_name
-        n1 << " or its Board of Directors related to tax liabilities arising from your compensation."
-
-        n1.line_break
-
-      end
-
-      document.paragraph(styles['Justify']) do |n1|
-        n1 << "7. "
-        n1.apply(styles['Char_Style']) do |n2|
-           n2 << "Interpretation, Amendment and Enforcement. "
-        end
-        n1 << "This letter agreement constitutes the complete agreement between you and "
-        n1 << @co_name
-        n1 << ", contains all of the terms of your employment with "
-        n1 << @co_name
-        n1 << " and supersedes any prior agreements, representations or understandings (whether written, oral or implied) between you and "
-        n1 << @co_name
-        n1 << ".  This letter agreement may not be amended or modified, except by an express written agreement signed by both you and a duly authorized officer of "
-        n1 << @co_name
-        n1 << ".  The terms of this letter agreement and the resolution of any disputes as to the meaning, effect, performance or validity of this letter agreement or arising out of, related to, or in any way connected with, this letter agreement, your employment with "
-        n1 << @co_name
-        n1 << " or any other relationship between you and "
-        n1 << @co_name
-        n1 << " (the “Disputes”) will be governed by State law, excluding laws relating to conflicts or choice of law.  You and "
-        n1 << @co_name
-        n1 << " submit to the exclusive personal jurisdiction of the federal and state courts in connection with any Dispute or any claim related to any Dispute."
-        n1.line_break
-
-      end
 
       document.paragraph(styles['Justify']) do |n1|
         n1 << "You may indicate your agreement with these terms and accept this offer by signing and dating this agreement by "
@@ -268,8 +227,34 @@ class LettersController < ApplicationController
         n1 << @co_rep
         n1 << " will provide you with the necessary paperwork and instructions."
         n1.line_break
+      end
+
+
+      document.paragraph(styles['Justify']) do |n1|
+        n1 << "We look forward to hearing from you."
+        n1.line_break
+        n1 << "Sincerely,"
+        n1.line_break
+        n1 << @co_rep
+        n1.line_break
+        n1 << "Signatures:"
+        n1.line_break
+        n1 << "Company Representative (Sign):  ___________________________________________________"
+        n1.line_break
+        n1 << "Company Representative (Print): ___________________________________________________"
+        n1.line_break
+        n1 << "Date:                           ___________________________________________________"
+        n1.line_break
+        n1.line_break
+        n1 << "Applicant (Sign):               ___________________________________________________"
+        n1.line_break
+        n1 << "Applicant (Print):              ___________________________________________________"
+        n1.line_break
+        n1 << "Date:                           ___________________________________________________"
+        n1.line_break
 
       end
+
 
       File.open('download.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
       #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
@@ -280,6 +265,48 @@ class LettersController < ApplicationController
 
 
   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def edit
 
