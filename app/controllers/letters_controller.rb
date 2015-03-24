@@ -46,8 +46,9 @@ class LettersController < ApplicationController
 
     if @letter.save
 
+      flash[:notice] = "saved!"
       @letter.subscribe
-
+      flash[:notice] = "emailed!"
       redirect_to @letter
 
       document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
@@ -70,8 +71,6 @@ class LettersController < ApplicationController
 
       @co_rep = params[:letter][:co_rep]
       @ap_wage = params[:letter][:ap_wage]
-
-
 
 
       styles = {}
