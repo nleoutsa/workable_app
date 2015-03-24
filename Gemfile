@@ -46,7 +46,7 @@ gem 'rtf'
 gem 'rtf_rails'
 
 # mailchimp api
-gem 'gibbon'
+# gem 'gibbon'
 
 
 group :development, :test do

@@ -1,10 +1,6 @@
 
 class LettersController < ApplicationController
 
-#  before_action :load_letter, only: [:show, :update, :edit, :destroy]
-#  before_action :load_wizard, only: [:new, :edit, :create, :update]
-
-
   require 'rtf'
   include RTF
   respond_to :rtf
@@ -29,7 +25,6 @@ class LettersController < ApplicationController
 
   def new
     @letter = Letter.new
-  #  @letter = @wizard.object
 
     logger.debug params.inspect
     puts params.inspect
@@ -43,12 +38,16 @@ class LettersController < ApplicationController
     logger.debug params.inspect
     puts params.inspect
 
+    if @letter.valid?
+      @letter.subscribe
+      flash[:notice] = "emailed!"
+    else
+      redirect_to @letter
+    end
 
     if @letter.save
 
       flash[:notice] = "saved!"
-      @letter.subscribe
-      flash[:notice] = "emailed!"
       redirect_to @letter
 
       document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
@@ -275,17 +274,11 @@ class LettersController < ApplicationController
       File.open('download.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
       #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
       send_file('download.rtf')
-    else
-      render action: 'new'
+
+
     end
 
 
-  #  @letter = @wizard.object
-  #  if @wizard.save
-  #    redirect_to @letter, notice: "Letter saved!"
-  #  else
-  #    render :new
-  #  end
   end
 
   def edit
@@ -308,11 +301,6 @@ class LettersController < ApplicationController
       render action: 'edit'
     end
 
-  #  if @wizard.save
-  #    redirect_to @letter, notice: 'Letter was successfully updated.'
-  #  else
-  #    render action: 'edit'
-  #  end
   end
 
   def destroy
@@ -421,20 +409,5 @@ end
     params.require(:letter).permit(:id, :co_name, :co_address_1, :co_address_2, :co_city_state_zip, :ap_name, :ap_address_1, :ap_address_2, :ap_city_state_zip, :pos_title, :supervisor, :start_date, :expiry_date, :co_email, :ap_wage, :co_rep)
   end
 
-
-=begin
-  def load_letter
-    @letter = Letter.find(params[:id])
-  end
-
-  def load_wizard
-    @wizard = ModelWizard.new(@letter || Letter, session, params)
-    if self.action_name.in? %w[new edit]
-      @wizard.start
-    elsif self.action_name.in? %w[create update]
-      @wizard.process
-    end
-  end
-=end
 
 end
