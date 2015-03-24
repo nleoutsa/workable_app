@@ -12,17 +12,20 @@
 
 
 <%= form_for @letter, html: {id: "multi-step-form", :class => 'multi-step'} do |f| %>
+
+
+  <% if !@letter.errors.empty? %>
+    <% @letter.errors.full_messages.each do |error| %>
+      <p class="warning"><%= error %></p>
+    <% end %>
+  <% end %>
+
+
   <fieldset>
 
-    <% if !@letter.errors.empty? %>
-      <% @letter.errors.full_messages.each do |error| %>
-        <p class="warning"><%= error %></p>
-      <% end %>
-    <% end %>
 
-    <span>
-      <%= link_to "Export as .rtf", {:controller => :letters, :action => :download}, {:method => :post} %>
-    </span>
+
+
     <h2 class="frame-title">Company Info</h2>
     <h3 class="frame-subtitle">Step 1 of 5</h3>
     <%= f.text_field :co_name, :placeholder => "Company Name" %>
