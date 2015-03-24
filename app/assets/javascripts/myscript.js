@@ -13,9 +13,26 @@ $(document).ready(function () {
     }
   });
 
-    $('#letter').click(function() {
-      $('#letter').css('background-color','rgba(50,200,100,0.3)');
-    });
+
+
+
+// sticky form on left side...
+  var offset = $('#multi-step-form').offset();
+
+  $(window).scroll(function() {
+    var scroll_top = 150 + $(window).scrollTop();
+
+    if (offset.top < scroll_top) {
+      $('#multi-step-form').addClass('fixed');
+    }
+    else {
+      $('#multi-step-form').removeClass('fixed');
+    }
+  });
+
+
+
+
 
 // VARIABLES
   var current_frame, next_frame, previous_frame; // set up frames for each section of form
@@ -86,6 +103,7 @@ $(document).ready(function () {
 
   $(".submit").click(function(){
     return false; // do nothing with form for now... replace with email/download/pdf/copy... accordian menu later?
+
   });
 
   function next_fieldset() {

@@ -45,6 +45,8 @@ gem 'rtf'
 # integrates rtf library with rails
 gem 'rtf_rails'
 
+# mailchimp api
+gem 'gibbon'
 
 
 group :development, :test do

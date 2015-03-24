@@ -1,12 +1,37 @@
-<p><%= @letter.co_name %></p>
-<p><%= @letter.co_address_1 %></p>
-<p><%= @letter.co_address_2 %></p>
-<p><%= @letter.ap_name %></p>
-<p><%= @letter.ap_address_1 %></p>
-<p><%= @letter.ap_address_2 %></p>
-<p><%= @letter.pos_title %></p>
-<p><%= @letter.co_city_state_zip %></p>
-<p><%= @letter.ap_city_state_zip %></p>
-<p><%= @letter.start_date %></p>
-<p><%= @letter.supervisor %></p>
-<p><%= @letter.expiry_date %></p>
+<p><%= link_to 'Index', letters_path, data: { no_turbolink: true }%></p>
+<p><%= link_to 'New', new_letter_path, data: { no_turbolink: true }%></p>
+<p><%= link_to 'Edit', edit_letter_path(@letter), data: { no_turbolink: true } %></p>
+<p><%= link_to 'Destroy', @letter, method: :delete, data: { confirm: 'Are you sure?' }, data: { no_turbolink: true } %></p>
+
+
+<section id="letter-container">
+  <div id="letter">
+    <ul id="letter-list">
+      <li><p class="top-right"><%= @letter.co_name %></p></li>
+      <li><p class="top-right"><%= @letter.co_address_1 %></p></li>
+      <li><p class="top-right"><%= @letter.co_address_2 %></p></li>
+      <li><p class="top-right"><%= @letter.co_city_state_zip %></p></li>
+    </ul>
+
+    <ul>
+      <li><p class="applicant-info"><%= @letter.ap_name %></p></li>
+      <li><p class="applicant-info"><%= @letter.ap_address_1 %></p></li>
+      <li><p class="applicant-info"><%= @letter.ap_address_2 %></p></li>
+      <li><p class="applicant-info"><%= @letter.ap_city_state_zip %></p></li>
+    </ul>
+
+    <ul>
+      <li>Dear <span class=""><%= @letter.ap_name %></span>,</li>
+      <li><p></p></li>
+      <li><span class="company-info "><%= @letter.co_name %></span> is pleased to offer you employment on the following terms:</li>
+      <li><p></p></li>
+    </ul>
+
+    <ul>
+      <li><p class="applicant-info "><%= @letter.pos_title %></p></li>
+      <li><p class="applicant-info "><%= @letter.supervisor %></p></li>
+      <li><p class="applicant-info "><%= @letter.start_date %></p></li>
+      <li><p class="applicant-info "><%= @letter.expiry_date %></p></li>
+    </ul>
+  </div>
+</section>

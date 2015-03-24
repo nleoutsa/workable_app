@@ -1,19 +1,14 @@
- <td><%= link_to 'New', new_letter_path %></td>
+<p><%= link_to 'New', new_letter_path, data: { no_turbolink: true }%></p>
 <table>
   <thead>
     <tr>
-      <th>co_name</th>
-      <th>co_address_1</th>
-      <th>co_address_2</th>
-      <th>co_city_state_zip</th>
-      <th>ap_name</th>
-      <th>ap_address_1</th>
-      <th>ap_address_2</th>
-      <th>ap_city_state_zip</th>
-      <th>pos_title</th>
-      <th>supervisor</th>
-      <th>start_date</th>
-      <th>expiry_date</th>
+      <th>Company Name</th>
+      <th>Applicant Name</th>
+      <th>Position</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -21,25 +16,13 @@
     <% @letters.each do |letter| %>
     <tr>
       <td><%= letter.co_name %></td>
-      <td><%= letter.co_address_1 %></td>
-      <td><%= letter.co_address_2 %></td>
-      <td><%= letter.co_city_state_zip %></td>
-
       <td><%= letter.ap_name %></td>
-      <td><%= letter.ap_address_1 %></td>
-      <td><%= letter.ap_address_2 %></td>
-      <td><%= letter.ap_city_state_zip %></td>
-
       <td><%= letter.pos_title %></td>
-      <td><%= letter.supervisor %></td>
 
-      <td><%= letter.start_date %></td>
-
-      <td><%= letter.expiry_date %></td>
-
-      <td><%= link_to 'Show', letter %></td>
-      <td><%= link_to 'Edit (with steps)', edit_letter_path(letter) %></td>
-      <td><%= link_to 'Destroy', letter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Show', letter, data: { no_turbolink: true } %></td>
+      <td><%= link_to 'Edit', edit_letter_path(letter), data: { no_turbolink: true } %></td>
+      <td><%= link_to 'Destroy', letter, method: :delete, data: { confirm: 'Are you sure?' }, data: { no_turbolink: true } %></td>
+      <td><%= link_to "Download", {:controller => :letters, :action => :download}, {:method => :post} %></td>
     </tr>
     <% end %>
   </tbody>

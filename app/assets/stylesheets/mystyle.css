@@ -247,11 +247,13 @@ p {
 
 /*form styles*/
 #multi-step-form {
+}
+.multi-step {
+
   width: 35vw;
   float: left;
   text-align: center;
-  top: 25%;
-  position: fixed; /* was relative */
+  position: relative; /* was relative */
 }
 #multi-step-form fieldset {
   background: white;
@@ -383,11 +385,10 @@ letter TOOL
 *************************************************************************************************
 */
 
-#letter-tool  {
+#app-container  {
   margin: auto;
+  position: relative;
 }
-
-
 /*
 *************************************************************************************************
 letter
@@ -400,6 +401,7 @@ letter
   border: 1px solid black;
   margin: 0 auto 5% auto;
   margin-right: 3.5vw;
+
 }
 
 #letter {
@@ -430,7 +432,10 @@ letter
 }
 
 
-
+.fixed {
+  position: fixed;
+  top: 150px;
+}
 
 
 @media screen and (max-width: 1150px) {
@@ -446,47 +451,60 @@ letter
   #multi-step-form .action-button {
     width: 80px;
   }
+
+
   #letter-container {
     margin: 0 6.5vw;
-    margin-top: 410px;
+    margin-top: 420px;
     margin-bottom: 100px;
 
-    height: 110vw;
-    width: 85vw;
+
+
   }
   #letter {
+    height: 110vw;
+    width: 85vw;
     margin: none;
   }
-
   #letter-list {
     margin-left: 56.66666vw;
   }
-
   #letter li {
     font-size: 1.7vw;
   }
-
   #letter li:first-of-type {
   margin-top: 7.08333333vw;
-}
+  }
 
-  .top-right
-    {
+  .top-right {
     width: 21.5vw;
     word-wrap: break-word;
     text-align: right;
   }
-
+  .fixed {
+    position: relative;
+    top: 0;
+  }
 }
 
 
 /*
 *************************************************************************************************
-live type
+Index
 *************************************************************************************************
 */
 
+td {
+  width: 15vw;
+  text-align: center;
 
+}
+tr {
+  border-bottom: 1px solid black;
+}
+thead tr {
+  border-bottom: 3px solid black;
+}
 /*
 *************************************************************************************************
 Header
@@ -502,4 +520,16 @@ Header
   background-clip: border-box;
   box-sizing: border-box;
   background-origin: padding-box;
+}
+
+/*
+*************************************************************************************************
+Typography
+*************************************************************************************************
+*/
+
+.warning {
+  color: red;
+  font-size: 1.3em;
+  padding-bottom: 10px;
 }
