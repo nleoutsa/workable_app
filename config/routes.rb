@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-resources :letters  do
-  post :download, :on => :collection
-end
+resources :letters
 
 root 'letters#index'
 

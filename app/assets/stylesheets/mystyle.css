@@ -549,3 +549,7 @@ Typography
   width: 90%;
   margin: 30px auto;
 }
+
+.placeholder {
+  color: rgba(0,0,0,0.3);
+}

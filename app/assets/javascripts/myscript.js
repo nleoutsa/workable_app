@@ -7,6 +7,7 @@ $(document).ready(function () {
     inputField.onkeyup = function(){
       text = inputField.value;
       input_class = "." + inputField.id;
+      $(input_class).css("color", "black");
       $(input_class).html(text);
 
 
