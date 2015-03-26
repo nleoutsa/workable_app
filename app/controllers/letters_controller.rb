@@ -109,6 +109,9 @@ class LettersController < ApplicationController
 
       @co_rep = params[:letter][:co_rep]
       @ap_wage = params[:letter][:ap_wage]
+      @dental = params[:letter][:dental]
+      @medical = params[:letter][:medical]
+      @equity = params[:letter][:equity]
 
 
 ####
@@ -195,8 +198,10 @@ class LettersController < ApplicationController
         n1.line_break
         n1 << "Your compensation package includes base pay and the following:"
         n1.line_break
-        n1 << "OPTIONS"
-        n1.line_break
+        n1 << "Eligibility to enroll in medical insurance coverage...  " if @medical == "1"
+        n1.line_break if @medical == "1"
+        n1 << "Eligibility to enroll in dental insurance coverage...  " if @dental == "1"
+        n1.line_break if @dental == "1"
         n1.line_break
         n1 << "You base salary will be "
         n1 << @ap_wage
@@ -433,7 +438,7 @@ end
   private
 
   def letter_params
-    params.require(:letter).permit(:id, :co_name, :co_address_1, :co_address_2, :co_city_state_zip, :ap_name, :ap_address_1, :ap_address_2, :ap_city_state_zip, :pos_title, :supervisor, :start_date, :expiry_date, :co_email, :ap_wage, :co_rep)
+    params.require(:letter).permit(:id, :co_name, :co_address_1, :co_address_2, :co_city_state_zip, :ap_name, :ap_address_1, :ap_address_2, :ap_city_state_zip, :pos_title, :supervisor, :start_date, :expiry_date, :ap_email, :ap_wage, :co_rep, :dental, :medical, :bonus, :commission, :equity, :bg_check, :drug_test)
   end
 
 
