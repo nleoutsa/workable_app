@@ -4,16 +4,35 @@ $(document).ready(function () {
 
   $('input').focus(function() {
     inputField = document.activeElement;
+    input_class = "." + inputField.id;
+    //
     inputField.onkeyup = function(){
       text = inputField.value;
-      input_class = "." + inputField.id;
+      if (text == "") {
+        text = "______________________";
+      };
+      $(input_class).css("color", "black");
+      $(input_class).html(text);
+    }
+    //highlight on focus
+    $(input_class).css("background-color", "rgba(51,182,203, 0.3)");
+    //un-highlight
+    $(this).focusout(function() {
+      text = inputField.value;
+      if (text == "") {
+        text = "______________________";
+      }
+      else {
+        $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
+      };
+
       $(input_class).css("color", "black");
       $(input_class).html(text);
 
-
-    }
+    });
   });
 
+// LOSE FOCUS:::
 
 
 

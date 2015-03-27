@@ -540,7 +540,7 @@ Typography
   width: 70%;
 }
 .checkboxlabel {
-  float: right;
+  float: left;
   width: 30%;
 }
 
@@ -552,4 +552,10 @@ Typography
 
 .placeholder {
   color: rgba(0,0,0,0.3);
+}
+
+.barrier {
+  float: left;
+  width: 100%;
+  height: 1px;
 }

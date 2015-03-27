@@ -35,13 +35,6 @@
 
 
 
-    <div class="checkbox"><%= f.check_box :medical %></div>
-    <div class="checkboxlabel"><%= f.label :medical %></div>
-    <div class="checkbox"><%= f.check_box :dental %></div>
-    <div class="checkboxlabel"><%= f.label :dental %></div>
-    <div class="checkbox"><%= f.check_box :equity %></div>
-    <div class="checkboxlabel"><%= f.label :equity %></div>
-
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
 
@@ -75,18 +68,79 @@
     <div class="checkbox"><%= f.check_box :dental %></div>
     <div class="checkboxlabel"><%= f.label :dental %></div>
     <div class="checkbox"><%= f.check_box :equity %></div>
-    <div class="checkboxlabel"><%= f.label :equity, "Equity in company" %></div>
+    <div class="checkboxlabel"><%= f.label :equity, "Equity" %></div>
+    <div class="checkbox"><%= f.check_box :bonus %></div>
+    <div class="checkboxlabel"><%= f.label :bonus %></div>
+    <div class="checkbox"><%= f.check_box :commission %></div>
+    <div class="checkboxlabel"><%= f.label :commission %></div>
+    <div class="checkbox"><%= f.check_box :drug_test %></div>
+    <div class="checkboxlabel"><%= f.label :drug_test %></div>
+    <div class="checkbox"><%= f.check_box :bg_check %></div>
+    <div class="checkboxlabel"><%= f.label :bg_check %></div>
+
+
+
+    <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
 
+<form action="//workable.us10.list-manage.com/subscribe/post?u=9decee1daa694313bd8ce347c&amp;id=56f301f9b6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
   <fieldset>
     <h2 class="frame-title">Other Information</h2>
     <h3 class="frame-subtitle">Step 5 of 5</h3>
     <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
     <%= f.text_field :co_rep, :placeholder => "Signed By" %>
     <%= f.text_field :ap_email, label: false, :placeholder => 'Your email address' %>
+    <div class="mc-field-group">
+      <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span></label>
+      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+    </div>
+    <div class="mc-field-group">
+        <label for="mce-FNAME">First Name </label>
+        <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+    </div>
+    <div class="mc-field-group">
+        <label for="mce-LNAME">Last Name </label>
+        <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+    </div>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <%= f.submit "Download", :class => "action-button" %>
+    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="action-button"></div>
   </fieldset>
 <% end %>
+
+<!-- Begin MailChimp Signup Form
+<link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//workable.us10.list-manage.com/subscribe/post?u=9decee1daa694313bd8ce347c&amp;id=56f301f9b6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+   <div id="mc_embed_signup_scroll">
+    <h2>Subscribe to our mailing list</h2>
+<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+<div class="mc-field-group">
+    <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+<div class="mc-field-group">
+    <label for="mce-FNAME">First Name </label>
+    <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+</div>
+<div class="mc-field-group">
+    <label for="mce-LNAME">Last Name </label>
+    <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+</div>
+    <div id="mce-responses" class="clear">
+        <div class="response" id="mce-error-response" style="display:none"></div>
+        <div class="response" id="mce-success-response" style="display:none"></div>
+    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups
+   <div style="position: absolute; left: -5000px;"><input type="text" name="b_9decee1daa694313bd8ce347c_56f301f9b6" tabindex="-1" value=""></div>
+   <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+   </div>
+</form>
+</div>
+
+<!--End mc_embed_signup-->
