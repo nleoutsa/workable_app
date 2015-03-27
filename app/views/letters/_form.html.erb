@@ -28,9 +28,13 @@
 
     <h2 class="frame-title">Company Info</h2>
     <h3 class="frame-subtitle">Step 1 of 5</h3>
+    <div class="textlabel"><%= f.label :co_name, "Company Name" %></div>
     <%= f.text_field :co_name, :placeholder => "Company Name" %>
+    <div class="textlabel"><%= f.label :co_address_1, "Address Line 1" %></div>
     <%= f.text_field :co_address_1, :placeholder => "Address Line 1" %>
+    <div class="textlabel"><%= f.label :co_address_2, "Address Line 2" %></div>
     <%= f.text_field :co_address_2, :placeholder => "Address Line 2" %>
+    <div class="textlabel"><%= f.label :co_city_state_zip, "City, State Zip" %></div>
     <%= f.text_field :co_city_state_zip, :placeholder => "City, State Zip" %>
 
 
@@ -41,9 +45,13 @@
   <fieldset>
       <h2 class="frame-title">Applicant Info</h2>
       <h3 class="frame-subtitle">Step 2 of 5</h3>
+    <div class="textlabel"><%= f.label :ap_name, "Applicant Name" %></div>
       <%= f.text_field :ap_name, :placeholder => "Applicant Name" %>
+    <div class="textlabel"><%= f.label :ap_address_1, "Address Line 1" %></div>
       <%= f.text_field :ap_address_1, :placeholder => "Address Line 1" %>
+    <div class="textlabel"><%= f.label :ap_address_2, "Address Line 2" %></div>
       <%= f.text_field :ap_address_2, :placeholder => "Address Line 2" %>
+    <div class="textlabel"><%= f.label :ap_city_state_zip, "City, State Zip" %></div>
       <%= f.text_field :ap_city_state_zip, :placeholder => "City State Zip"%>
       <input type="button" name="previous" class="previous action-button" value="Previous" />
       <input type="button" name="next" class="next action-button" value="Next" />
@@ -52,9 +60,13 @@
   <fieldset>
     <h2 class="frame-title">Position Info</h2>
     <h3 class="frame-subtitle">Step 3 of 5</h3>
+    <div class="textlabel"><%= f.label :pos_title, "Position" %></div>
       <%= f.text_field :pos_title, :placeholder => "Position" %>
+    <div class="textlabel"><%= f.label :supervisor, "Supervisor" %></div>
       <%= f.text_field :supervisor, :placeholder => "Supervisor" %>
-      <%= f.text_field :ap_wage, :placeholder => "Hourly Wage" %>
+    <div class="textlabel"><%= f.label :ap_wage, "Pay" %></div>
+      <%= f.text_field :ap_wage, :placeholder => "Pay" %>
+    <div class="textlabel"><%= f.label :start_date, "Start Date" %></div>
       <%= f.date_field :start_date, :placeholder => "Start Date" %>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
@@ -80,6 +92,7 @@
 
 
 
+    <div class="textlabel"><%= f.label :expiry_date, "Offer Expires On" %></div>
     <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
@@ -89,24 +102,13 @@
   <fieldset>
     <h2 class="frame-title">Other Information</h2>
     <h3 class="frame-subtitle">Step 5 of 5</h3>
-    <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
+    <div class="textlabel"><%= f.label :co_rep, "Signed By" %></div>
     <%= f.text_field :co_rep, :placeholder => "Signed By" %>
+    <div class="textlabel"><%= f.label :ap_email, "Email" %></div>
     <%= f.text_field :ap_email, label: false, :placeholder => 'Your email address' %>
-    <div class="mc-field-group">
-      <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span></label>
-      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-    </div>
-    <div class="mc-field-group">
-        <label for="mce-FNAME">First Name </label>
-        <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
-    </div>
-    <div class="mc-field-group">
-        <label for="mce-LNAME">Last Name </label>
-        <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
-    </div>
+
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <%= f.submit "Download", :class => "action-button" %>
-    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="action-button"></div>
   </fieldset>
 <% end %>
 

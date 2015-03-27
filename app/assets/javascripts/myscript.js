@@ -6,33 +6,43 @@ $(document).ready(function () {
     inputField = document.activeElement;
     input_class = "." + inputField.id;
     //
+    bool = (inputField.id).indexOf("address_2");
     inputField.onkeyup = function(){
       text = inputField.value;
-      if (text == "") {
+      if ((text == "") && (bool < 0)) {
         text = "______________________";
+        $(input_class).css("color", "rgba(0,0,0,0.1)");
+      }
+      else {
+        $(input_class).css("color", "black");
       };
-      $(input_class).css("color", "black");
       $(input_class).html(text);
     }
     //highlight on focus
-    $(input_class).css("background-color", "rgba(51,182,203, 0.3)");
+    //$(input_class).css("background-color", "rgba(51,182,203, 0.3)");
+    $(input_class).css("text-decoration", "underline");
     //un-highlight
     $(this).focusout(function() {
       text = inputField.value;
-      if (text == "") {
+      if ((text == "") && (bool < 0)) {
         text = "______________________";
+        $(input_class).css("color", "rgba(0,0,0,0.1)");
       }
       else {
-        $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
+       // $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
+
+        $(input_class).css("color", "black");
+        $(input_class).css("text-decoration", "none");
       };
 
-      $(input_class).css("color", "black");
       $(input_class).html(text);
 
     });
   });
 
-// LOSE FOCUS:::
+// Focus on correct field when clicking on letter
+
+// scroll to first mention of field in letter on focus/typing
 
 
 

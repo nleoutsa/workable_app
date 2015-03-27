@@ -5,7 +5,6 @@ class LettersController < ApplicationController
   include RTF
   respond_to :rtf
 
-
   DOWNLOAD_PATH = File.join(Rails.root, "app", "views", "letters")
 
   def index
@@ -89,10 +88,16 @@ class LettersController < ApplicationController
       flash[:notice] = "saved!"
       redirect_to @letter
 
+  ############################################################
+  #                                                          #
+  #              FORMATTING FOR .rtf download                #
+  #                                                          #
+  ############################################################
+
       document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
 
 
-      @co_name = params[:letter][:co_name]
+      @co_name = (params[:letter][:co_name].length > 0) ? params[:letter][:co_name] : "______________________"
       @co_address_1 = params[:letter][:co_address_1]
       @co_address_2 = params[:letter][:co_address_2]
       @co_city_state_zip = params[:letter][:co_city_state_zip]
@@ -117,36 +122,21 @@ class LettersController < ApplicationController
       @drug_test = params[:letter][:drug_test]
       @bg_check = params[:letter][:bg_check]
 
-####
-#      @hrs =
-#
-#      benefits(checkbox):
-#
-#      pay_period(dropdown):        weekly
-#                                   bi-weekly
-#                                   monthly
-
-#      contingencies(checkbox):     drug-test
-#                                   background check
-#
-#
-#
-#
-####
+    # set styles for different sections of .rtf file...
       styles = {}
       styles['Para_Style'] = ParagraphStyle.new
       styles['BOLD'] = CharacterStyle.new
       styles['Justify'] = ParagraphStyle.new
-      styles['Justify'].justification = ParagraphStyle::FULL_JUSTIFY
+      styles['Right_Align'] = ParagraphStyle.new
 
-      styles['Para_Style'].left_indent = 400
-
-
+      styles['Para_Style'].left_indent = 0
+      styles['Right_Align'].justification = ParagraphStyle::RIGHT_JUSTIFY
+      styles['Justify'].justification = ParagraphStyle::LEFT_JUSTIFY
+      styles['Justify'].left_indent = 0
     #  styles['Char_Style'].font        = Font.new(Font::MODERN, 'Courier')
       styles['BOLD'].bold        = true
 
-      document.paragraph(styles['Para_Style']) do |n1|
-        n1.line_break
+      document.paragraph(styles['Right_Align']) do |n1|
         n1 << @co_name
         n1.line_break
         n1 << @co_address_1
@@ -156,6 +146,9 @@ class LettersController < ApplicationController
         n1 << @co_city_state_zip
         n1.line_break
         n1.line_break
+      end
+
+      document.paragraph(styles['Para_Style']) do |n1|
         n1 << @ap_name
         n1.line_break
         n1 << @ap_address_1
@@ -187,6 +180,7 @@ class LettersController < ApplicationController
         n1 << @supervisor
         n1 << ". We look forward to adding you to our team."
         n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
@@ -217,6 +211,8 @@ class LettersController < ApplicationController
         n1 << " delivered "
         n1 << @pay_period
         n1 << ". Standard tax deductions will be made pursuant to state and federal law."
+        n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
@@ -229,6 +225,8 @@ class LettersController < ApplicationController
         n1 << "OPTIONS"
         n1.line_break
         n1 << "You will be required to submit the proper paperwork to confirm your eligibility and tax status. This includes I-9 and W-4 forms, which will be provided."
+        n1.line_break
+        n1.line_break
       end
 
 
@@ -241,39 +239,67 @@ class LettersController < ApplicationController
         n1 << @co_rep
         n1 << " will provide you with the necessary paperwork and instructions."
         n1.line_break
+        n1.line_break
       end
 
 
       document.paragraph(styles['Justify']) do |n1|
         n1 << "We look forward to hearing from you."
         n1.line_break
+        n1.line_break
         n1 << "Sincerely,"
+        n1.line_break
         n1.line_break
         n1 << @co_rep
         n1.line_break
+        n1.line_break
         n1 << "Signatures:"
         n1.line_break
-        n1 << "Company Representative (Sign):  ___________________________________________________"
         n1.line_break
-        n1 << "Company Representative (Print): ___________________________________________________"
+        n1 << "___________________________________________________"
         n1.line_break
-        n1 << "Date:                           ___________________________________________________"
+        n1 << "Company Representative (Sign):"
         n1.line_break
         n1.line_break
-        n1 << "Applicant (Sign):               ___________________________________________________"
+        n1 << "___________________________________________________"
         n1.line_break
-        n1 << "Applicant (Print):              ___________________________________________________"
+        n1 << "Company Representative (Print)"
         n1.line_break
-        n1 << "Date:                           ___________________________________________________"
+        n1.line_break
+        n1 << "___________________________________________________"
+        n1.line_break
+        n1 << "Date"
+        n1.line_break
+        n1.line_break
+        n1.line_break
+        n1 << "___________________________________________________"
+        n1.line_break
+        n1 << "Applicant (Sign)"
+        n1.line_break
+        n1.line_break
+        n1 << "___________________________________________________"
+        n1.line_break
+        n1 << "Applicant (Print)"
+        n1.line_break
+        n1.line_break
+        n1 << "___________________________________________________"
+        n1.line_break
+        n1 << "Date"
         n1.line_break
 
       end
 
 
-      File.open('download.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
+      File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
       #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
-      send_file('download.rtf')
+      send_file('offer_letter.rtf')
 
+
+  ############################################################
+  #                                                          #
+  #              FORMATTING FOR .rtf download                #
+  #                                                          #
+  ############################################################
 
     end
 
@@ -543,9 +569,16 @@ class LettersController < ApplicationController
       end
 
 
-      File.open('download.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
+      File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
       #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
-      send_file('download.rtf')
+      send_file('offer_letter.rtf')
+
+
+  ############################################################
+  #                                                          #
+  #              FORMATTING FOR .rtf download                #
+  #                                                          #
+  ############################################################
 
 
 
