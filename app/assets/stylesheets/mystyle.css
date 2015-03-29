@@ -90,7 +90,7 @@ a:hover, a:active { outline: none; }
 a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
 
-ul, ol { margin-left: 2em; }
+ul, ol { margin-left: 0; }
 ol { list-style-type: decimal; }
 
 /* remove margins for navigation lists */
@@ -411,8 +411,8 @@ letter
 }
 
 
-#letter-list {
-  margin-left: 40vw;
+#co-top-right {
+  float: right;
 }
 
 #letter li {
@@ -428,6 +428,7 @@ letter
 }
 
 .applicant-info {
+  clear: right;
   width: 15vw;
   word-wrap: break-word;
   text-align: left;
@@ -441,6 +442,10 @@ letter
 .fixed {
   position: fixed;
   top: 150px;
+}
+
+ul {
+  margin: 0 7.0588vw;
 }
 
 
@@ -471,15 +476,13 @@ letter
     height: 110vw;
     width: 85vw;
     margin: none;
-  }
-  #letter-list {
-    margin-left: 56.66666vw;
+
   }
   #letter li {
     font-size: 1.7vw;
   }
   #letter li:first-of-type {
-  margin-top: 7.08333333vw;
+    margin-top: 7.08333333vw;
   }
 
   .top-right {
@@ -490,6 +493,10 @@ letter
   .fixed {
     position: relative;
     top: 0;
+  }
+
+  ul  {
+    margin: 0 10vw;
   }
 }
 
