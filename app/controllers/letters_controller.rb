@@ -93,7 +93,7 @@ class LettersController < ApplicationController
   #              FORMATTING FOR .rtf download                #
   #                                                          #
   ############################################################
-     document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
+           document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
 
 
       @co_name = (params[:letter][:co_name].length > 0) ? params[:letter][:co_name] : "______________________"
@@ -110,21 +110,20 @@ class LettersController < ApplicationController
       @supervisor = params[:letter][:supervisor]
       @start_date = params[:letter][:start_date]
       @expiry_date = params[:letter][:expiry_date]
-
       @hrs = params[:letter][:hrs]
 
       @co_rep = params[:letter][:co_rep]
 
       @ap_wage = params[:letter][:ap_wage]
 
-      @dental = params[:letter][:dental]
-      @medical = params[:letter][:medical]
-      @equity = params[:letter][:equity]
-      @commission = params[:letter][:commission]
-      @bonus = params[:letter][:bonus]
+      @dental = params[:dental]
+      @medical = params[:medical]
+      @equity = params[:equity]
+      @commission = params[:commission]
+      @bonus = params[:bonus]
 
-      @drug_test = params[:letter][:drug_test]
-      @bg_check = params[:letter][:bg_check]
+      @drug_test = params[:drug_test]
+      @bg_check = params[:bg_check]
 
     # set styles for different sections of .rtf file...
       styles = {}
@@ -186,13 +185,13 @@ class LettersController < ApplicationController
         n1 << ". We look forward to adding you to our team."
         n1.line_break
         n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
         n1.apply(styles['BOLD']) do |n2|
            n2 << "Hours and Compensation"
         end
-        n1.line_break
         n1 << "This is a full-time, exempt position requiring approximately "
         n1 << @hrs
         n1 << " hours per week. "
@@ -200,8 +199,10 @@ class LettersController < ApplicationController
         n1.line_break
         n1 << "Your compensation package includes base pay and the following:"
         n1.line_break
+        n1 << "- Standard benefits package."
+        n1.line_break
         n1 << "- Eligibility to enroll in medical insurance through the company's provider." if @medical == "1"
-        n1.line_break if @medical == "1"
+        n1.line_break
         n1 << "- Eligibility to enroll in dental insurance through the company's provider." if @dental == "1"
         n1.line_break if @dental == "1"
         n1 << "- Equity in the company. Details provided on a separate document." if @bonus == "1"
@@ -216,6 +217,7 @@ class LettersController < ApplicationController
         n1 << ". Standard tax deductions will be made pursuant to state and federal law."
         n1.line_break
         n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
@@ -226,6 +228,7 @@ class LettersController < ApplicationController
         n1 << "You are entering into an agreement of at-will employment. "
         n1 << @co_name
         n1 << " may terminate employment at any time without notice or cause, but will make every effort to provide timely notice."
+        n1.line_break
         n1.line_break
         n1.line_break
       end
@@ -253,6 +256,7 @@ class LettersController < ApplicationController
         n1 << @co_name
         n1 << " or its Board of Directors related to tax liabilities arising from your compensation."
 
+        n1.line_break
         n1.line_break
         n1.line_break
       end
@@ -332,7 +336,7 @@ class LettersController < ApplicationController
       end
 
 
-      File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
+      File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)}
       #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
       send_file('offer_letter.rtf')
 
@@ -437,14 +441,14 @@ class LettersController < ApplicationController
 
       @ap_wage = params[:letter][:ap_wage]
 
-      @dental = params[:letter][:dental]
-      @medical = params[:letter][:medical]
-      @equity = params[:letter][:equity]
-      @commission = params[:letter][:commission]
-      @bonus = params[:letter][:bonus]
+      @dental = params[:dental]
+      @medical = params[:medical]
+      @equity = params[:equity]
+      @commission = params[:commission]
+      @bonus = params[:bonus]
 
-      @drug_test = params[:letter][:drug_test]
-      @bg_check = params[:letter][:bg_check]
+      @drug_test = params[:drug_test]
+      @bg_check = params[:bg_check]
 
     # set styles for different sections of .rtf file...
       styles = {}
@@ -506,13 +510,13 @@ class LettersController < ApplicationController
         n1 << ". We look forward to adding you to our team."
         n1.line_break
         n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
         n1.apply(styles['BOLD']) do |n2|
            n2 << "Hours and Compensation"
         end
-        n1.line_break
         n1 << "This is a full-time, exempt position requiring approximately "
         n1 << @hrs
         n1 << " hours per week. "
@@ -520,8 +524,10 @@ class LettersController < ApplicationController
         n1.line_break
         n1 << "Your compensation package includes base pay and the following:"
         n1.line_break
+        n1 << "- Standard benefits package."
+        n1.line_break
         n1 << "- Eligibility to enroll in medical insurance through the company's provider." if @medical == "1"
-        n1.line_break if @medical == "1"
+        n1.line_break
         n1 << "- Eligibility to enroll in dental insurance through the company's provider." if @dental == "1"
         n1.line_break if @dental == "1"
         n1 << "- Equity in the company. Details provided on a separate document." if @bonus == "1"
@@ -536,6 +542,7 @@ class LettersController < ApplicationController
         n1 << ". Standard tax deductions will be made pursuant to state and federal law."
         n1.line_break
         n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
@@ -546,6 +553,7 @@ class LettersController < ApplicationController
         n1 << "You are entering into an agreement of at-will employment. "
         n1 << @co_name
         n1 << " may terminate employment at any time without notice or cause, but will make every effort to provide timely notice."
+        n1.line_break
         n1.line_break
         n1.line_break
       end
@@ -573,6 +581,7 @@ class LettersController < ApplicationController
         n1 << @co_name
         n1 << " or its Board of Directors related to tax liabilities arising from your compensation."
 
+        n1.line_break
         n1.line_break
         n1.line_break
       end
@@ -652,7 +661,7 @@ class LettersController < ApplicationController
       end
 
 
-      File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)} # existing file by this name will be overwritten
+      File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)}
       #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
       send_file('offer_letter.rtf')
 
