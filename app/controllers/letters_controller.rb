@@ -202,10 +202,10 @@ class LettersController < ApplicationController
         n1 << "- Standard benefits package."
         n1.line_break
         n1 << "- Eligibility to enroll in medical insurance through the company's provider." if @medical == "1"
-        n1.line_break
+        n1.line_break if @medical == "1"
         n1 << "- Eligibility to enroll in dental insurance through the company's provider." if @dental == "1"
         n1.line_break if @dental == "1"
-        n1 << "- Equity in the company. Details provided on a separate document." if @bonus == "1"
+        n1 << "- Equity in the company. Details provided on a separate document." if @equity == "1"
         n1.line_break if @equity == "1"
         n1 << "- Eligibility for a performance-based bonus to be outlined in a separate document." if @bonus == "1"
         n1.line_break if @bonus == "1"
@@ -527,10 +527,10 @@ class LettersController < ApplicationController
         n1 << "- Standard benefits package."
         n1.line_break
         n1 << "- Eligibility to enroll in medical insurance through the company's provider." if @medical == "1"
-        n1.line_break
+        n1.line_break if @medical == "1"
         n1 << "- Eligibility to enroll in dental insurance through the company's provider." if @dental == "1"
         n1.line_break if @dental == "1"
-        n1 << "- Equity in the company. Details provided on a separate document." if @bonus == "1"
+        n1 << "- Equity in the company. Details provided on a separate document." if @equity == "1"
         n1.line_break if @equity == "1"
         n1 << "- Eligibility for a performance-based bonus to be outlined in a separate document." if @bonus == "1"
         n1.line_break if @bonus == "1"
