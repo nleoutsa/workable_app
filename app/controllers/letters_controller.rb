@@ -93,8 +93,7 @@ class LettersController < ApplicationController
   #              FORMATTING FOR .rtf download                #
   #                                                          #
   ############################################################
-
-      document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
+     document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
 
 
       @co_name = (params[:letter][:co_name].length > 0) ? params[:letter][:co_name] : "______________________"
@@ -112,13 +111,18 @@ class LettersController < ApplicationController
       @start_date = params[:letter][:start_date]
       @expiry_date = params[:letter][:expiry_date]
 
+      @hrs = params[:letter][:hrs]
+
       @co_rep = params[:letter][:co_rep]
+
       @ap_wage = params[:letter][:ap_wage]
+
       @dental = params[:letter][:dental]
       @medical = params[:letter][:medical]
       @equity = params[:letter][:equity]
       @commission = params[:letter][:commission]
       @bonus = params[:letter][:bonus]
+
       @drug_test = params[:letter][:drug_test]
       @bg_check = params[:letter][:bg_check]
 
@@ -157,6 +161,8 @@ class LettersController < ApplicationController
         n1.line_break
         n1 << @ap_city_state_zip
         n1.line_break
+        n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
@@ -164,7 +170,6 @@ class LettersController < ApplicationController
         n1 << "Dear "
         n1 << @ap_name
         n1 << ","
-        n1.line_break
         n1.line_break
 
       end
@@ -185,31 +190,29 @@ class LettersController < ApplicationController
 
       document.paragraph(styles['Justify']) do |n1|
         n1.apply(styles['BOLD']) do |n2|
-           n2 << "Hours and Compensation. "
+           n2 << "Hours and Compensation"
         end
         n1.line_break
         n1 << "This is a full-time, exempt position requiring approximately "
         n1 << @hrs
-        n1 << " per week. "
+        n1 << " hours per week. "
         n1.line_break
         n1.line_break
         n1 << "Your compensation package includes base pay and the following:"
         n1.line_break
-        n1 << "Eligibility to enroll in medical insurance coverage as outlined in a separate document." if @medical == "1"
+        n1 << "- Eligibility to enroll in medical insurance through the company's provider." if @medical == "1"
         n1.line_break if @medical == "1"
-        n1 << "Eligibility to enroll in dental insurance coverage as outlined in a separate document." if @dental == "1"
+        n1 << "- Eligibility to enroll in dental insurance through the company's provider." if @dental == "1"
         n1.line_break if @dental == "1"
-        n1 << "A commission structure to be outlined in a separate document." if @commission == "1"
-        n1.line_break if @commission == "1"
-        n1 << "Eligibility to earn a bonus as outlined in a separate document." if @bonus == "1"
-        n1.line_break if @bonus == "1"
-        n1 << "Equity in the company. Details provided in a separate document." if @bonus == "1"
+        n1 << "- Equity in the company. Details provided on a separate document." if @bonus == "1"
         n1.line_break if @equity == "1"
+        n1 << "- Eligibility for a performance-based bonus to be outlined in a separate document." if @bonus == "1"
+        n1.line_break if @bonus == "1"
+        n1 << "- A commission structure which will be outlined in a separate document." if @commission == "1"
+        n1.line_break if @commission == "1"
         n1.line_break
-        n1 << "You base salary will be "
+        n1 << "You base pay is $"
         n1 << @ap_wage
-        n1 << " delivered "
-        n1 << @pay_period
         n1 << ". Standard tax deductions will be made pursuant to state and federal law."
         n1.line_break
         n1.line_break
@@ -217,27 +220,66 @@ class LettersController < ApplicationController
 
       document.paragraph(styles['Justify']) do |n1|
         n1.apply(styles['BOLD']) do |n2|
-           n2 << "Conditions for Employment. "
+           n2 << "Termination"
         end
         n1.line_break
-        n1 << "This offer is contingent upon proof of eligibility to work in the United States (which must be provided per the terms of the Immigration and Reform Act) and completion of "
+        n1 << "You are entering into an agreement of at-will employment. "
+        n1 << @co_name
+        n1 << " may terminate employment at any time without notice or cause, but will make every effort to provide timely notice."
         n1.line_break
-        n1 << "OPTIONS"
         n1.line_break
-        n1 << "You will be required to submit the proper paperwork to confirm your eligibility and tax status. This includes I-9 and W-4 forms, which will be provided."
+      end
+
+      document.paragraph(styles['Justify']) do |n1|
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Tax Matters"
+        end
+        n1.line_break
+        n1 << "(a) "
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Withholding. "
+        end
+        n1 << "All forms of compensation referred to in this letter agreement are subject to reduction to reflect applicable withholding and payroll taxes and other deductions required by law."
+        n1.line_break
+        n1 << "(b) "
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Tax Advice. "
+        end
+        n1 << "You are encouraged to obtain your own tax advice regarding your compensation from "
+        n1 << @co_name
+        n1 << ". You agree that "
+        n1 << @co_name
+        n1 << " does not have a duty to design its compensation policies in a manner that minimizes your tax liabilities, and you will not make any claim against "
+        n1 << @co_name
+        n1 << " or its Board of Directors related to tax liabilities arising from your compensation."
+
         n1.line_break
         n1.line_break
       end
 
 
       document.paragraph(styles['Justify']) do |n1|
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Conditions for Employment"
+        end
+        n1.line_break
+        n1 << "This offer is contingent upon the following:"
+        n1.line_break
+        n1 << "- Proof of eligibility to work in the United States (which must be provided per the terms of the Immigration and Reform Act)."
+        n1.line_break
+        n1 << "- Completion of a drug test." if @drug_test == "1"
+        n1.line_break if @drug_test == "1"
+        n1 << "- Completion of a background check." if @bg_check == "1"
+        n1.line_break if @bg_check == "1"
+        n1 << "- You will be required to submit the proper paperwork to confirm your eligibility and tax status. This includes I-9 and W-4 forms, which will be provided."
+        n1.line_break
+        n1.line_break
         n1 << "You may indicate your agreement with these terms and accept this offer by signing and dating this agreement by "
         n1 << @expiry_date
-        n1 << ".  As required by law, your employment with "
+        n1 << ". Upon your acceptance of this employment offer, "
         n1 << @co_name
-        n1 << " is contingent upon your providing legal proof of your identity and authorization to work in the United States.  This offer is also contingent upon successful completion of a Background check, References check, Drug Test conducted in accordance with applicable federal, state, and local laws.  Upon your acceptance of this employment offer, "
-        n1 << @co_rep
         n1 << " will provide you with the necessary paperwork and instructions."
+        n1.line_break
         n1.line_break
         n1.line_break
       end
@@ -258,7 +300,7 @@ class LettersController < ApplicationController
         n1.line_break
         n1 << "___________________________________________________"
         n1.line_break
-        n1 << "Company Representative (Sign):"
+        n1 << "Company Representative (Sign)"
         n1.line_break
         n1.line_break
         n1 << "___________________________________________________"
@@ -372,7 +414,6 @@ class LettersController < ApplicationController
   #              FORMATTING FOR .rtf download                #
   #                                                          #
   ############################################################
-
       document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
 
 
@@ -390,14 +431,18 @@ class LettersController < ApplicationController
       @supervisor = params[:letter][:supervisor]
       @start_date = params[:letter][:start_date]
       @expiry_date = params[:letter][:expiry_date]
+      @hrs = params[:letter][:hrs]
 
       @co_rep = params[:letter][:co_rep]
+
       @ap_wage = params[:letter][:ap_wage]
+
       @dental = params[:letter][:dental]
       @medical = params[:letter][:medical]
       @equity = params[:letter][:equity]
       @commission = params[:letter][:commission]
       @bonus = params[:letter][:bonus]
+
       @drug_test = params[:letter][:drug_test]
       @bg_check = params[:letter][:bg_check]
 
@@ -436,6 +481,8 @@ class LettersController < ApplicationController
         n1.line_break
         n1 << @ap_city_state_zip
         n1.line_break
+        n1.line_break
+        n1.line_break
       end
 
       document.paragraph(styles['Justify']) do |n1|
@@ -443,7 +490,6 @@ class LettersController < ApplicationController
         n1 << "Dear "
         n1 << @ap_name
         n1 << ","
-        n1.line_break
         n1.line_break
 
       end
@@ -464,31 +510,29 @@ class LettersController < ApplicationController
 
       document.paragraph(styles['Justify']) do |n1|
         n1.apply(styles['BOLD']) do |n2|
-           n2 << "Hours and Compensation. "
+           n2 << "Hours and Compensation"
         end
         n1.line_break
         n1 << "This is a full-time, exempt position requiring approximately "
         n1 << @hrs
-        n1 << " per week. "
+        n1 << " hours per week. "
         n1.line_break
         n1.line_break
         n1 << "Your compensation package includes base pay and the following:"
         n1.line_break
-        n1 << "Eligibility to enroll in medical insurance coverage as outlined in a separate document." if @medical == "1"
+        n1 << "- Eligibility to enroll in medical insurance through the company's provider." if @medical == "1"
         n1.line_break if @medical == "1"
-        n1 << "Eligibility to enroll in dental insurance coverage as outlined in a separate document." if @dental == "1"
+        n1 << "- Eligibility to enroll in dental insurance through the company's provider." if @dental == "1"
         n1.line_break if @dental == "1"
-        n1 << "A commission structure to be outlined in a separate document." if @commission == "1"
-        n1.line_break if @commission == "1"
-        n1 << "Eligibility to earn a bonus as outlined in a separate document." if @bonus == "1"
-        n1.line_break if @bonus == "1"
-        n1 << "Equity in the company. Details provided in a separate document." if @bonus == "1"
+        n1 << "- Equity in the company. Details provided on a separate document." if @bonus == "1"
         n1.line_break if @equity == "1"
+        n1 << "- Eligibility for a performance-based bonus to be outlined in a separate document." if @bonus == "1"
+        n1.line_break if @bonus == "1"
+        n1 << "- A commission structure which will be outlined in a separate document." if @commission == "1"
+        n1.line_break if @commission == "1"
         n1.line_break
-        n1 << "You base salary will be "
+        n1 << "You base pay is $"
         n1 << @ap_wage
-        n1 << " delivered "
-        n1 << @pay_period
         n1 << ". Standard tax deductions will be made pursuant to state and federal law."
         n1.line_break
         n1.line_break
@@ -496,27 +540,66 @@ class LettersController < ApplicationController
 
       document.paragraph(styles['Justify']) do |n1|
         n1.apply(styles['BOLD']) do |n2|
-           n2 << "Conditions for Employment. "
+           n2 << "Termination"
         end
         n1.line_break
-        n1 << "This offer is contingent upon proof of eligibility to work in the United States (which must be provided per the terms of the Immigration and Reform Act) and completion of "
+        n1 << "You are entering into an agreement of at-will employment. "
+        n1 << @co_name
+        n1 << " may terminate employment at any time without notice or cause, but will make every effort to provide timely notice."
         n1.line_break
-        n1 << "OPTIONS"
         n1.line_break
-        n1 << "You will be required to submit the proper paperwork to confirm your eligibility and tax status. This includes I-9 and W-4 forms, which will be provided."
+      end
+
+      document.paragraph(styles['Justify']) do |n1|
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Tax Matters"
+        end
+        n1.line_break
+        n1 << "(a) "
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Withholding. "
+        end
+        n1 << "All forms of compensation referred to in this letter agreement are subject to reduction to reflect applicable withholding and payroll taxes and other deductions required by law."
+        n1.line_break
+        n1 << "(b) "
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Tax Advice. "
+        end
+        n1 << "You are encouraged to obtain your own tax advice regarding your compensation from "
+        n1 << @co_name
+        n1 << ". You agree that "
+        n1 << @co_name
+        n1 << " does not have a duty to design its compensation policies in a manner that minimizes your tax liabilities, and you will not make any claim against "
+        n1 << @co_name
+        n1 << " or its Board of Directors related to tax liabilities arising from your compensation."
+
         n1.line_break
         n1.line_break
       end
 
 
       document.paragraph(styles['Justify']) do |n1|
+        n1.apply(styles['BOLD']) do |n2|
+           n2 << "Conditions for Employment"
+        end
+        n1.line_break
+        n1 << "This offer is contingent upon the following:"
+        n1.line_break
+        n1 << "- Proof of eligibility to work in the United States (which must be provided per the terms of the Immigration and Reform Act)."
+        n1.line_break
+        n1 << "- Completion of a drug test." if @drug_test == "1"
+        n1.line_break if @drug_test == "1"
+        n1 << "- Completion of a background check." if @bg_check == "1"
+        n1.line_break if @bg_check == "1"
+        n1 << "- You will be required to submit the proper paperwork to confirm your eligibility and tax status. This includes I-9 and W-4 forms, which will be provided."
+        n1.line_break
+        n1.line_break
         n1 << "You may indicate your agreement with these terms and accept this offer by signing and dating this agreement by "
         n1 << @expiry_date
-        n1 << ".  As required by law, your employment with "
+        n1 << ". Upon your acceptance of this employment offer, "
         n1 << @co_name
-        n1 << " is contingent upon your providing legal proof of your identity and authorization to work in the United States.  This offer is also contingent upon successful completion of a Background check, References check, Drug Test conducted in accordance with applicable federal, state, and local laws.  Upon your acceptance of this employment offer, "
-        n1 << @co_rep
         n1 << " will provide you with the necessary paperwork and instructions."
+        n1.line_break
         n1.line_break
         n1.line_break
       end
@@ -537,7 +620,7 @@ class LettersController < ApplicationController
         n1.line_break
         n1 << "___________________________________________________"
         n1.line_break
-        n1 << "Company Representative (Sign):"
+        n1 << "Company Representative (Sign)"
         n1.line_break
         n1.line_break
         n1 << "___________________________________________________"
@@ -598,7 +681,7 @@ class LettersController < ApplicationController
   private
 
   def letter_params
-    params.require(:letter).permit(:id, :co_name, :co_address_1, :co_address_2, :co_city_state_zip, :ap_name, :ap_address_1, :ap_address_2, :ap_city_state_zip, :pos_title, :supervisor, :start_date, :expiry_date, :ap_email, :ap_wage, :co_rep, :dental, :medical, :bonus, :commission, :equity, :bg_check, :drug_test)
+    params.require(:letter).permit(:id, :co_name, :co_address_1, :co_address_2, :co_city_state_zip, :ap_name, :ap_address_1, :ap_address_2, :ap_city_state_zip, :pos_title, :supervisor, :start_date, :expiry_date, :ap_email, :ap_wage, :co_rep, :dental, :medical, :bonus, :commission, :equity, :bg_check, :drug_test, :hrs)
   end
 
 

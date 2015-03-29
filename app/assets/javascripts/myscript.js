@@ -5,33 +5,40 @@ $(document).ready(function () {
   $('input').focus(function() {
     inputField = document.activeElement;
     input_class = "." + inputField.id;
+    text = inputField.value;
+    $(input_class).html(text);
+
+
     //
-    bool = (inputField.id).indexOf("address_2");
+    no_address = (inputField.id).indexOf("address_2");
+
+    // live type on key release, change font color to black and leave an underline for unfilled inputs
     inputField.onkeyup = function(){
       text = inputField.value;
-      if ((text == "") && (bool < 0)) {
+      if ((text == "") && (no_address < 0)) {
         text = "______________________";
         $(input_class).css("color", "rgba(0,0,0,0.1)");
       }
       else {
-        $(input_class).css("color", "black");
+        $(input_class).css("color", "#444");
       };
       $(input_class).html(text);
     }
+
     //highlight on focus
     //$(input_class).css("background-color", "rgba(51,182,203, 0.3)");
     $(input_class).css("text-decoration", "underline");
     //un-highlight
     $(this).focusout(function() {
       text = inputField.value;
-      if ((text == "") && (bool < 0)) {
+      if ((text == "") && (no_address < 0)) {
         text = "______________________";
         $(input_class).css("color", "rgba(0,0,0,0.1)");
       }
       else {
        // $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
 
-        $(input_class).css("color", "black");
+        $(input_class).css("color", "#444");
         $(input_class).css("text-decoration", "none");
       };
 
@@ -40,9 +47,24 @@ $(document).ready(function () {
     });
   });
 
-// Focus on correct field when clicking on letter
 
-// scroll to first mention of field in letter on focus/typing
+
+$("input[type='checkbox']").click(function() {
+  checkbox_name = $(this).prop("name");
+  checkbox_class = "." + checkbox_name;
+  if ($(this).prop('checked')) {
+    $(checkbox_class).removeClass('dont_include');
+  }
+  else {
+    $(checkbox_class).addClass('dont_include');
+  };
+});
+
+
+// TODO:
+  // Focus on correct field when clicking on letter
+
+  // scroll to first mention of field in letter on focus/typing
 
 
 

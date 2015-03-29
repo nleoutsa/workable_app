@@ -5,7 +5,7 @@
     <li class="showing">Company Info</li>
     <li>Applicant Info</li>
     <li>Position Info</li>
-    <li>Benefits</li>
+    <li>Benefits and Conditions</li>
     <li>Other Info</li>
   </ul>
 </section>
@@ -28,6 +28,7 @@
 
     <h2 class="frame-title">Company Info</h2>
     <h3 class="frame-subtitle">Step 1 of 5</h3>
+
     <div class="textlabel"><%= f.label :co_name, "Company Name" %></div>
     <%= f.text_field :co_name, :placeholder => "Company Name" %>
     <div class="textlabel"><%= f.label :co_address_1, "Address Line 1" %></div>
@@ -37,14 +38,13 @@
     <div class="textlabel"><%= f.label :co_city_state_zip, "City, State Zip" %></div>
     <%= f.text_field :co_city_state_zip, :placeholder => "City, State Zip" %>
 
-
-
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
 
   <fieldset>
       <h2 class="frame-title">Applicant Info</h2>
       <h3 class="frame-subtitle">Step 2 of 5</h3>
+
     <div class="textlabel"><%= f.label :ap_name, "Applicant Name" %></div>
       <%= f.text_field :ap_name, :placeholder => "Applicant Name" %>
     <div class="textlabel"><%= f.label :ap_address_1, "Address Line 1" %></div>
@@ -52,7 +52,8 @@
     <div class="textlabel"><%= f.label :ap_address_2, "Address Line 2" %></div>
       <%= f.text_field :ap_address_2, :placeholder => "Address Line 2" %>
     <div class="textlabel"><%= f.label :ap_city_state_zip, "City, State Zip" %></div>
-      <%= f.text_field :ap_city_state_zip, :placeholder => "City State Zip"%>
+      <%= f.text_field :ap_city_state_zip, :placeholder => "City, State Zip"%>
+
       <input type="button" name="previous" class="previous action-button" value="Previous" />
       <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
@@ -60,50 +61,61 @@
   <fieldset>
     <h2 class="frame-title">Position Info</h2>
     <h3 class="frame-subtitle">Step 3 of 5</h3>
+
     <div class="textlabel"><%= f.label :pos_title, "Position" %></div>
       <%= f.text_field :pos_title, :placeholder => "Position" %>
     <div class="textlabel"><%= f.label :supervisor, "Supervisor" %></div>
       <%= f.text_field :supervisor, :placeholder => "Supervisor" %>
-    <div class="textlabel"><%= f.label :ap_wage, "Pay" %></div>
-      <%= f.text_field :ap_wage, :placeholder => "Pay" %>
-    <div class="textlabel"><%= f.label :start_date, "Start Date" %></div>
-      <%= f.date_field :start_date, :placeholder => "Start Date" %>
+    <div class="textlabel"><%= f.label :ap_wage, "Amount per Pay Period" %></div>
+      <%= f.text_field :ap_wage, :placeholder => "Amount per Pay Period" %>
+    <div class="textlabel"><%= f.label :hrs, "Hours per Week" %></div>
+      <%= f.text_field :hrs, :placeholder => "Hours per Week" %>
+
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
 
   <fieldset>
-    <h2 class="frame-title">Benefits</h2>
+    <h2 class="frame-title">Benefits and Conditions</h2>
     <h3 class="frame-subtitle">Step 4 of 5</h3>
-    <div class="checkbox"><%= f.check_box :medical %></div>
+
+    <div class="barrier"></div>
+    <div><strong>Benefits:</strong></div>
+    <div class="barrier"></div>
+    <div class="checkbox"><%= f.check_box :medical, :name => 'medical' %></div>
     <div class="checkboxlabel"><%= f.label :medical %></div>
-    <div class="checkbox"><%= f.check_box :dental %></div>
+    <div class="checkbox"><%= f.check_box :dental, :name => 'dental' %></div>
     <div class="checkboxlabel"><%= f.label :dental %></div>
-    <div class="checkbox"><%= f.check_box :equity %></div>
-    <div class="checkboxlabel"><%= f.label :equity, "Equity" %></div>
-    <div class="checkbox"><%= f.check_box :bonus %></div>
+    <div class="checkbox"><%= f.check_box :equity, :name => 'equity' %></div>
+    <div class="checkboxlabel"><%= f.label :equity %></div>
+    <div class="checkbox"><%= f.check_box :bonus, :name => 'bonus' %></div>
     <div class="checkboxlabel"><%= f.label :bonus %></div>
-    <div class="checkbox"><%= f.check_box :commission %></div>
+    <div class="checkbox"><%= f.check_box :commission, :name => 'commission' %></div>
     <div class="checkboxlabel"><%= f.label :commission %></div>
-    <div class="checkbox"><%= f.check_box :drug_test %></div>
+
+    <div class="barrier"></div>
+    <div><strong>Conditions of Employment:</strong></div>
+    <div class="barrier"></div>
+    <div class="checkbox"><%= f.check_box :drug_test, :name => 'drug_test' %></div>
     <div class="checkboxlabel"><%= f.label :drug_test %></div>
-    <div class="checkbox"><%= f.check_box :bg_check %></div>
+    <div class="checkbox"><%= f.check_box :bg_check, :name => 'bg_check' %></div>
     <div class="checkboxlabel"><%= f.label :bg_check %></div>
 
-
-
-    <div class="textlabel"><%= f.label :expiry_date, "Offer Expires On" %></div>
-    <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
+    <div class="barrier"></div>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
 
-<form action="//workable.us10.list-manage.com/subscribe/post?u=9decee1daa694313bd8ce347c&amp;id=56f301f9b6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
   <fieldset>
     <h2 class="frame-title">Other Information</h2>
     <h3 class="frame-subtitle">Step 5 of 5</h3>
+
     <div class="textlabel"><%= f.label :co_rep, "Signed By" %></div>
     <%= f.text_field :co_rep, :placeholder => "Signed By" %>
+    <div class="textlabel"><%= f.label :start_date, "Start Date" %></div>
+      <%= f.date_field :start_date, :placeholder => "Start Date" %>
+    <div class="textlabel"><%= f.label :expiry_date, "Offer Expires On" %></div>
+    <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
     <div class="textlabel"><%= f.label :ap_email, "Email" %></div>
     <%= f.text_field :ap_email, label: false, :placeholder => 'Your email address' %>
 
