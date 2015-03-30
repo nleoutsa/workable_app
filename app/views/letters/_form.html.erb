@@ -119,15 +119,6 @@
     <div class="textlabel"><%= f.label :email, "Email" %></div>
     <%= f.text_field :email, label: false, :placeholder => 'Your email address' %>
 
-
-
-      <%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true") do %>
-         <%= email_field(:email, :address, {id: "email", placeholder: "Email Address"}) %>
-      <%= submit_tag("Sign me up!") %>
-    <% end %>
-
-
-
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <%= f.submit "Download", :class => "action-button" %>
   </fieldset>

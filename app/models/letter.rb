@@ -1,10 +1,6 @@
 class Letter < ActiveRecord::Base
 
-  validates_presence_of :email
+  validates :co_name, :ap_name, :email, presence: true
   validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
-  # validates :co_name, :ap_name, presence: true
-
-
-
 
 end

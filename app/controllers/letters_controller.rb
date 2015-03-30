@@ -88,33 +88,43 @@ class LettersController < ApplicationController
       flash[:notice] = "saved!"
       redirect_to @letter
 
+## subscribe email to mailing list:
+
+      @list_id = ENV["MAILCHIMP_LIST_ID"]
+      gb = Gibbon::API.new
+
+      gb.lists.subscribe({
+        :id => @list_id,
+        :email => {:email => params[:letter][:email]}
+        })
+
   ############################################################
   #                                                          #
   #              FORMATTING FOR .rtf download                #
   #                                                          #
   ############################################################
-           document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
+      document = RTF::Document.new(RTF::Font.new(RTF::Font::ROMAN, 'Times New Roman'))
 
 
       @co_name = (params[:letter][:co_name].length > 0) ? params[:letter][:co_name] : "______________________"
-      @co_address_1 = params[:letter][:co_address_1]
+      @co_address_1 = (params[:letter][:co_address_1].length > 0) ? params[:letter][:co_address_1] : "______________________"
       @co_address_2 = params[:letter][:co_address_2]
-      @co_city_state_zip = params[:letter][:co_city_state_zip]
+      @co_city_state_zip = (params[:letter][:co_city_state_zip].length > 0) ? params[:letter][:co_city_state_zip] : "______________________"
 
-      @ap_name = params[:letter][:ap_name]
-      @ap_address_1 = params[:letter][:ap_address_1]
+      @ap_name = (params[:letter][:ap_name].length > 0) ? params[:letter][:ap_name] : "______________________"
+      @ap_address_1 = (params[:letter][:ap_address_1].length > 0) ? params[:letter][:ap_address_1] : "______________________"
       @ap_address_2 = params[:letter][:ap_address_2]
-      @ap_city_state_zip = params[:letter][:ap_city_state_zip]
+      @ap_city_state_zip = (params[:letter][:ap_city_state_zip].length > 0) ? params[:letter][:ap_city_state_zip] : "______________________"
 
-      @pos_title = params[:letter][:pos_title]
-      @supervisor = params[:letter][:supervisor]
-      @start_date = params[:letter][:start_date]
-      @expiry_date = params[:letter][:expiry_date]
-      @hrs = params[:letter][:hrs]
+      @pos_title = (params[:letter][:pos_title].length > 0) ? params[:letter][:pos_title] : "______________________"
+      @supervisor = (params[:letter][:supervisor].length > 0) ? params[:letter][:supervisor] : "______________________"
+      @start_date = (params[:letter][:start_date].length > 0) ? params[:letter][:start_date] : "______________________"
+      @expiry_date = (params[:letter][:expiry_date].length > 0) ? params[:letter][:expiry_date] : "______________________"
+      @hrs = (params[:letter][:hrs].length > 0) ? params[:letter][:hrs] : "______________________"
 
-      @co_rep = params[:letter][:co_rep]
+      @co_rep = (params[:letter][:co_rep].length > 0) ? params[:letter][:co_rep] : "______________________"
 
-      @ap_wage = params[:letter][:ap_wage]
+      @ap_wage = (params[:letter][:ap_wage].length > 0) ? params[:letter][:ap_wage] : "______________________"
 
       @dental = params[:dental]
       @medical = params[:medical]
@@ -341,6 +351,7 @@ class LettersController < ApplicationController
       send_file('offer_letter.rtf')
 
 
+
   ############################################################
   #                                                          #
   #              FORMATTING FOR .rtf download                #
@@ -412,6 +423,15 @@ class LettersController < ApplicationController
 
       redirect_to @letter
 
+## subscribe email to mailing list:
+
+      @list_id = ENV["MAILCHIMP_LIST_ID"]
+      gb = Gibbon::API.new
+
+      gb.lists.subscribe({
+        :id => @list_id,
+        :email => {:email => params[:letter][:email]}
+        })
 
   ############################################################
   #                                                          #
@@ -422,24 +442,24 @@ class LettersController < ApplicationController
 
 
       @co_name = (params[:letter][:co_name].length > 0) ? params[:letter][:co_name] : "______________________"
-      @co_address_1 = params[:letter][:co_address_1]
+      @co_address_1 = (params[:letter][:co_address_1].length > 0) ? params[:letter][:co_address_1] : "______________________"
       @co_address_2 = params[:letter][:co_address_2]
-      @co_city_state_zip = params[:letter][:co_city_state_zip]
+      @co_city_state_zip = (params[:letter][:co_city_state_zip].length > 0) ? params[:letter][:co_city_state_zip] : "______________________"
 
-      @ap_name = params[:letter][:ap_name]
-      @ap_address_1 = params[:letter][:ap_address_1]
+      @ap_name = (params[:letter][:ap_name].length > 0) ? params[:letter][:ap_name] : "______________________"
+      @ap_address_1 = (params[:letter][:ap_address_1].length > 0) ? params[:letter][:ap_address_1] : "______________________"
       @ap_address_2 = params[:letter][:ap_address_2]
-      @ap_city_state_zip = params[:letter][:ap_city_state_zip]
+      @ap_city_state_zip = (params[:letter][:ap_city_state_zip].length > 0) ? params[:letter][:ap_city_state_zip] : "______________________"
 
-      @pos_title = params[:letter][:pos_title]
-      @supervisor = params[:letter][:supervisor]
-      @start_date = params[:letter][:start_date]
-      @expiry_date = params[:letter][:expiry_date]
-      @hrs = params[:letter][:hrs]
+      @pos_title = (params[:letter][:pos_title].length > 0) ? params[:letter][:pos_title] : "______________________"
+      @supervisor = (params[:letter][:supervisor].length > 0) ? params[:letter][:supervisor] : "______________________"
+      @start_date = (params[:letter][:start_date].length > 0) ? params[:letter][:start_date] : "______________________"
+      @expiry_date = (params[:letter][:expiry_date].length > 0) ? params[:letter][:expiry_date] : "______________________"
+      @hrs = (params[:letter][:hrs].length > 0) ? params[:letter][:hrs] : "______________________"
 
-      @co_rep = params[:letter][:co_rep]
+      @co_rep = (params[:letter][:co_rep].length > 0) ? params[:letter][:co_rep] : "______________________"
 
-      @ap_wage = params[:letter][:ap_wage]
+      @ap_wage = (params[:letter][:ap_wage].length > 0) ? params[:letter][:ap_wage] : "______________________"
 
       @dental = params[:dental]
       @medical = params[:medical]
