@@ -37,16 +37,13 @@ gem 'responders', '~> 2.0'
 
 gem 'thin'
 
-# Use htmltoword to convert to .docx
-# gem 'htmltoword'
-
 # rtf format library for ruby
 gem 'rtf'
 # integrates rtf library with rails
 gem 'rtf_rails'
 
 # mailchimp api
-# gem 'gibbon'
+gem 'gibbon' #, git: 'git://github.co/amro/gibbon.git'
 
 
 group :development, :test do
