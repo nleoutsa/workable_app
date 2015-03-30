@@ -29,7 +29,7 @@
     <h2 class="frame-title">Company Info</h2>
     <h3 class="frame-subtitle">Step 1 of 5</h3>
 
-    <div class="textlabel"><%= f.label :co_name, "Company Name" %></div>
+    <div class="textlabel"><%= f.label :co_name, "* Company Name" %></div>
     <%= f.text_field :co_name, :placeholder => "Company Name" %>
     <div class="textlabel"><%= f.label :co_address_1, "Address Line 1" %></div>
     <%= f.text_field :co_address_1, :placeholder => "Address Line 1" %>
@@ -45,7 +45,7 @@
       <h2 class="frame-title">Applicant Info</h2>
       <h3 class="frame-subtitle">Step 2 of 5</h3>
 
-    <div class="textlabel"><%= f.label :ap_name, "Applicant Name" %></div>
+    <div class="textlabel"><%= f.label :ap_name, "* Applicant Name" %></div>
       <%= f.text_field :ap_name, :placeholder => "Applicant Name" %>
     <div class="textlabel"><%= f.label :ap_address_1, "Address Line 1" %></div>
       <%= f.text_field :ap_address_1, :placeholder => "Address Line 1" %>
@@ -97,9 +97,9 @@
     <div><strong>Conditions of Employment:</strong></div>
     <div class="barrier"></div>
     <div class="checkbox"><%= f.check_box :drug_test, :name => 'drug_test' %></div>
-    <div class="checkboxlabel"><%= f.label :drug_test %></div>
+    <div class="checkboxlabel"><%= f.label :drug_test, "Drug Test" %></div>
     <div class="checkbox"><%= f.check_box :bg_check, :name => 'bg_check' %></div>
-    <div class="checkboxlabel"><%= f.label :bg_check %></div>
+    <div class="checkboxlabel"><%= f.label :bg_check, "Background Check" %></div>
 
     <div class="barrier"></div>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
@@ -116,7 +116,8 @@
       <%= f.date_field :start_date, :placeholder => "Start Date" %>
     <div class="textlabel"><%= f.label :expiry_date, "Offer Expires On" %></div>
     <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
-    <div class="textlabel"><%= f.label :email, "Email" %></div>
+
+    <div class="textlabel"><%= f.label :email, "* Please provide your email address so we may send a follow up email. We will never spam you or sell any of your data." %></div>
     <%= f.text_field :email, label: false, :placeholder => 'Your email address' %>
 
     <input type="button" name="previous" class="previous action-button" value="Previous" />

@@ -466,9 +466,8 @@ ul {
 
   #letter-container {
     margin: 0 6.5vw;
-    margin-top: 470px;
+    margin-top: 550px;
     margin-bottom: 100px;
-
 
 
   }
@@ -549,11 +548,11 @@ Typography
 
 .checkbox {
   float: left;
-  width: 70%;
+  width: 51%;
 }
 .checkboxlabel {
   float: left;
-  width: 30%;
+  width: 49%;
 }
 
 

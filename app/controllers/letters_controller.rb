@@ -5,28 +5,22 @@ class LettersController < ApplicationController
   include RTF
   respond_to :rtf
 
-  DOWNLOAD_PATH = File.join(Rails.root, "app", "views", "letters")
+#  DOWNLOAD_PATH = File.join(Rails.root, "app", "views", "letters")
+
+
+#only offering 'new' view...
 
   def index
     @letters = Letter.all
-
-    logger.debug params.inspect
-    puts params.inspect
   end
 
   def show
     @letter = Letter.find(params[:id])
-
-    logger.debug params.inspect
-    puts params.inspect
   end
 
 
   def new
     @letter = Letter.new
-
-    logger.debug params.inspect
-    puts params.inspect
   end
 
 
@@ -75,21 +69,11 @@ class LettersController < ApplicationController
 
 
   def create
-
-
     @letter = Letter.new(letter_params)
-
-    logger.debug params.inspect
-    puts params.inspect
-
 
     if @letter.save
 
-      flash[:notice] = "saved!"
-      redirect_to @letter
-
-## subscribe email to mailing list:
-
+## subscribe email address to mailing list:
       @list_id = ENV["MAILCHIMP_LIST_ID"]
       gb = Gibbon::API.new
 
@@ -97,6 +81,9 @@ class LettersController < ApplicationController
         :id => @list_id,
         :email => {:email => params[:letter][:email]}
         })
+
+
+      redirect_to new_letter_path
 
   ############################################################
   #                                                          #
@@ -288,6 +275,7 @@ class LettersController < ApplicationController
         n1 << "- You will be required to submit the proper paperwork to confirm your eligibility and tax status. This includes I-9 and W-4 forms, which will be provided."
         n1.line_break
         n1.line_break
+        n1.line_break
         n1 << "You may indicate your agreement with these terms and accept this offer by signing and dating this agreement by "
         n1 << @expiry_date
         n1 << ". Upon your acceptance of this employment offer, "
@@ -347,7 +335,6 @@ class LettersController < ApplicationController
 
 
       File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)}
-      #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
       send_file('offer_letter.rtf')
 
 
@@ -358,6 +345,8 @@ class LettersController < ApplicationController
   #                                                          #
   ############################################################
 
+      else
+        render action: 'new'
     end
 
 
@@ -400,28 +389,20 @@ class LettersController < ApplicationController
 
 
 
-
-
-
-
+#############################
+# Only using new and create #
+#############################
+=begin
 
   def edit
-
     @letter = Letter.find(params[:id])
-
-    logger.debug params.inspect
-    puts params.inspect
   end
 
   def update
-
-    logger.debug params.inspect
-    puts params.inspect
     @letter = Letter.find(params[:id])
     if @letter.update_attributes(letter_params)
-      flash[:notice] = 'Your letter was updated'
 
-      redirect_to @letter
+
 
 ## subscribe email to mailing list:
 
@@ -433,6 +414,8 @@ class LettersController < ApplicationController
         :email => {:email => params[:letter][:email]}
         })
 
+
+      redirect_to @letter
   ############################################################
   #                                                          #
   #              FORMATTING FOR .rtf download                #
@@ -682,7 +665,6 @@ class LettersController < ApplicationController
 
 
       File.open('offer_letter.rtf', 'w') {|file| file.write(document.to_rtf)}
-      #send_file(File.join(DOWNLOAD_PATH, "create.rtf.rtf_rb"))
       send_file('offer_letter.rtf')
 
 
@@ -702,10 +684,9 @@ class LettersController < ApplicationController
 
   def destroy
     @letter = Letter.find(params[:id])
-    @letter.destroy
-    redirect_to root_path
   end
 
+=end
 
   private
 
