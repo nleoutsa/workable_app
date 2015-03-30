@@ -116,8 +116,17 @@
       <%= f.date_field :start_date, :placeholder => "Start Date" %>
     <div class="textlabel"><%= f.label :expiry_date, "Offer Expires On" %></div>
     <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
-    <div class="textlabel"><%= f.label :ap_email, "Email" %></div>
-    <%= f.text_field :ap_email, label: false, :placeholder => 'Your email address' %>
+    <div class="textlabel"><%= f.label :email, "Email" %></div>
+    <%= f.text_field :email, label: false, :placeholder => 'Your email address' %>
+
+
+
+      <%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true") do %>
+         <%= email_field(:email, :address, {id: "email", placeholder: "Email Address"}) %>
+      <%= submit_tag("Sign me up!") %>
+    <% end %>
+
+
 
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <%= f.submit "Download", :class => "action-button" %>

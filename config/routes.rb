@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-resources :letters
+  post 'emailapi/subscribe' => 'emailapi#subscribe'
 
-root 'letters#index'
+  resources :letters
+
+  root 'letters#new'
 
 
 
