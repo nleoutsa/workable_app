@@ -18,7 +18,6 @@ class LettersController < ApplicationController
     @letter = Letter.find(params[:id])
   end
 
-
   def new
     @letter = Letter.new
   end
@@ -345,8 +344,8 @@ class LettersController < ApplicationController
   #                                                          #
   ############################################################
 
-      else
-        render action: 'new'
+#      else
+#        render action: 'new'
     end
 
 
