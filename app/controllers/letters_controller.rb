@@ -7,9 +7,6 @@ class LettersController < ApplicationController
 
 #  DOWNLOAD_PATH = File.join(Rails.root, "app", "views", "letters")
 
-
-#only offering 'new' view...
-
   def index
     @letters = Letter.all
   end
@@ -25,48 +22,6 @@ class LettersController < ApplicationController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   def create
     @letter = Letter.new(letter_params)
 
@@ -74,7 +29,7 @@ class LettersController < ApplicationController
 
 ## subscribe email address to mailing list:
       @list_id = ENV["MAILCHIMP_LIST_ID"]
-      gb = Gibbon::API.new
+      gb = Gibbon::API.new(Rails.application.secrets.mailchimp_api_key)
 
       gb.lists.subscribe({
         :id => @list_id,
