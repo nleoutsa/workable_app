@@ -29,11 +29,12 @@ class LettersController < ApplicationController
 
 ## subscribe email address to mailing list:
       @list_id = ENV["MAILCHIMP_LIST_ID"]
-      gb = Gibbon::API.new(["MAILCHIMP_API_KEY"])
+      gb = Gibbon::API.new(ENV["MAILCHIMP_API_KEY"])
 
       gb.lists.subscribe({
         :id => @list_id,
-        :email => {:email => params[:letter][:email]}
+        :email => {:email => params[:letter][:email]},
+        double_optin: false
         })
 
 
