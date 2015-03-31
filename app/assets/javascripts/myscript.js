@@ -38,7 +38,7 @@ $(document).ready(function () {
       }
       else {
 
-
+        $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
         $(input_class).css("color", "#444");
         $(input_class).css("text-decoration", "none");
       };
