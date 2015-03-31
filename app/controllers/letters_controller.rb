@@ -344,8 +344,8 @@ class LettersController < ApplicationController
   #                                                          #
   ############################################################
 
-#      else
-#        render action: 'new'
+      else
+        render action: 'new'
     end
 
 
@@ -391,7 +391,7 @@ class LettersController < ApplicationController
 #############################
 # Only using new and create #
 #############################
-=begin
+
 
   def edit
     @letter = Letter.find(params[:id])
@@ -685,7 +685,7 @@ class LettersController < ApplicationController
     @letter = Letter.find(params[:id])
   end
 
-=end
+
 
   private
 
