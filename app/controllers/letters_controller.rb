@@ -29,7 +29,7 @@ class LettersController < ApplicationController
 
 ## subscribe email address to mailing list:
       @list_id = ENV["MAILCHIMP_LIST_ID"]
-      gb = Gibbon::API.new(Rails.application.secrets.mailchimp_api_key)
+      gb = Gibbon::API.new
 
       gb.lists.subscribe({
         :id => @list_id,
