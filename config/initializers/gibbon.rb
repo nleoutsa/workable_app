@@ -4,7 +4,7 @@ if Rails.env.development?
 end
 
 if Rails.env.production?
-   Gibbon::API.api_key = ENV[:api_key]
+   Gibbon::API.api_key = ENV["api_key"]
 end
 
 Gibbon::API.timeout = 15
