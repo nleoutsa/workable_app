@@ -37,7 +37,7 @@ class LettersController < ApplicationController
         })
 
 
-      redirect_to new_letter_path
+    #  redirect_to new_letter_path
 
   ############################################################
   #                                                          #
