@@ -299,8 +299,8 @@ class LettersController < ApplicationController
   #                                                          #
   ############################################################
 
-    #  else
-    #    render action: 'new'
+      else
+        render action: 'new'
     end
 
 
