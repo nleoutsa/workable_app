@@ -29,7 +29,7 @@ class LettersController < ApplicationController
 
 ## subscribe email address to mailing list:
       @list_id = ENV["MAILCHIMP_LIST_ID"]
-      gb = Gibbon::API.new
+      gb = Gibbon::API.new(["MAILCHIMP_API_KEY"])
 
       gb.lists.subscribe({
         :id => @list_id,
@@ -37,7 +37,7 @@ class LettersController < ApplicationController
         })
 
 
-    #  redirect_to new_letter_path
+      redirect_to new_letter_path
 
   ############################################################
   #                                                          #
@@ -299,8 +299,8 @@ class LettersController < ApplicationController
   #                                                          #
   ############################################################
 
-      else
-        render action: 'new'
+    #  else
+    #    render action: 'new'
     end
 
 

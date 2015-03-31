@@ -9,6 +9,9 @@ $(document).ready(function () {
     $(input_class).html(text);
 
 
+    //highlight on focus
+    $(input_class).css("background-color", "rgba(51,182,203, 0.3)");
+    $(input_class).css("text-decoration", "underline");
     //
     no_address = (inputField.id).indexOf("address_2");
 
@@ -25,18 +28,16 @@ $(document).ready(function () {
       $(input_class).html(text);
     }
 
-    //highlight on focus
-    //$(input_class).css("background-color", "rgba(51,182,203, 0.3)");
-    $(input_class).css("text-decoration", "underline");
     //un-highlight
     $(this).focusout(function() {
       text = inputField.value;
       if ((text == "") && (no_address < 0)) {
         text = "______________________";
         $(input_class).css("color", "rgba(0,0,0,0.1)");
+        $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
       }
       else {
-       // $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
+
 
         $(input_class).css("color", "#444");
         $(input_class).css("text-decoration", "none");
