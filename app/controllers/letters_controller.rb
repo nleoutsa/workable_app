@@ -145,6 +145,7 @@ class LettersController < ApplicationController
         n1.apply(styles['BOLD']) do |n2|
            n2 << "Hours and Compensation"
         end
+        n1.line_break
         n1 << "This is a full-time, exempt position requiring approximately "
         n1 << @hrs
         n1 << " hours per week. "
