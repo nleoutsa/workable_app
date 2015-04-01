@@ -34,8 +34,8 @@ class LettersController < ApplicationController
       gb.lists.subscribe({
         :id => @list_id,
         :email => {:email => params[:letter][:email]},
-        :merge_vars => {:FNAME => params[:letter][:co_rep]},
-        double_optin: false
+        :merge_vars => {:FNAME => params[:letter][:co_rep]}
+#        double_optin: false
         })
 
 

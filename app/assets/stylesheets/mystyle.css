@@ -235,6 +235,11 @@ Clearfix use class="clear"
 *************************************************************************************************
 Custom Styles:
 *************************************************************************************************
+
+
+body {
+  background-color: #eff1f2;
+}
 */
 
 p {
@@ -296,6 +301,7 @@ p {
   margin: 10px 5px;
 }
 #multi-step-form .action-button:hover, #multi-step-form .action-button:focus {
+  background-color: #0F7F91;
   box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(51,182,203, 0.8);
 }
 /*headings*/
@@ -349,7 +355,7 @@ progressbar container
   line-height: 20px;
   display: block;
   font-size: 10px;
-  color: #333;
+  color: #33b6cb;
   background: white;
   border-radius: 50%;
   margin: 0 auto 5px auto;
@@ -376,7 +382,7 @@ progressbar container
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.showing:before,  #progressbar li.showing:after{
-  background: #33b6cb;
+  background-color: #0F7F91;
   color: white;
 }
 /*
@@ -401,6 +407,7 @@ letter
   border: 1px solid black;
   margin: 0 auto 5% auto;
   margin-right: 3.5vw;
+  background-color: #fff;
 
 }
 

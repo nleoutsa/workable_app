@@ -6,11 +6,10 @@ $(document).ready(function () {
     inputField = document.activeElement;
     input_class = "." + inputField.id;
     text = inputField.value;
-    $(input_class).html(text);
 
 
     //highlight on focus
-    $(input_class).css("background-color", "rgba(51,182,203, 0.3)");
+    $(input_class).css("background-color", "rgba(51,182,203, 0.5)");
     $(input_class).css("text-decoration", "underline");
     //
     no_address = (inputField.id).indexOf("address_2");
@@ -19,8 +18,10 @@ $(document).ready(function () {
     inputField.onkeyup = function(){
       text = inputField.value;
       if ((text == "") && (no_address < 0)) {
-        text = "______________________";
-        $(input_class).css("color", "rgba(0,0,0,0.1)");
+        //return to placeholder value
+        text = inputField.placeholder;
+      //  text = "______________________";
+        $(input_class).css("color", "rgba(0,0,0,0.3)");
       }
       else {
         $(input_class).css("color", "#444");
@@ -28,12 +29,28 @@ $(document).ready(function () {
       $(input_class).html(text);
     }
 
+    inputField.click = function(){
+      text = inputField.value;
+      if ((text == "") && (no_address < 0)) {
+        //return to placeholder value
+        text = inputField.placeholder;
+      //  text = "______________________";
+        $(input_class).css("color", "rgba(0,0,0,0.3)");
+      }
+      else {
+        $(input_class).css("color", "#444");
+      };
+      //$(input_class).html(text);
+    }
+
     //un-highlight
     $(this).focusout(function() {
       text = inputField.value;
       if ((text == "") && (no_address < 0)) {
-        text = "______________________";
-        $(input_class).css("color", "rgba(0,0,0,0.1)");
+        //return to placeholder value
+        text = inputField.placeholder;
+      //  text = "______________________";
+        $(input_class).css("color", "rgba(0,0,0,0.3)");
         $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
       }
       else {
