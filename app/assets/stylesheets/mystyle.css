@@ -254,13 +254,12 @@ p {
 
 /*form styles*/
 .multi-step {
-
   width: 35vw;
   float: none;
   text-align: center;
   position: relative; /* was relative */
-
 }
+
 #multi-step-form fieldset {
   background: white;
   border: 3px solid #33b6cb;
@@ -271,7 +270,7 @@ p {
   margin: 0 10%;
 
   /*stacking fieldsets above each other*/
-  position: absolute;
+  /*position: absolute;*/
 }
 /*Hide all except first fieldset*/
 #multi-step-form fieldset:not(:first-of-type) {
@@ -480,8 +479,9 @@ ul {
 
   #letter-container {
     margin: 0 6.5vw;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 100px;
+
 
   }
   #letter {
@@ -511,12 +511,19 @@ ul {
     margin: 0 10vw;
   }
 
-
+/*
   #multi-step-form fieldset {
-    position: relative; /* letter will not float below form if this is relative */
+    position: relative; letter will not float below form if this is absolute
   }
+*/
 }
 
+
+@media screen and (min-width: 1040px) {
+  #multi-step-form fieldset {
+    position: absolute;
+  }
+}
 
 /*
 *************************************************************************************************
@@ -535,6 +542,7 @@ tr {
 thead tr {
   border-bottom: 3px solid black;
 }
+
 /*
 *************************************************************************************************
 Header
@@ -595,7 +603,7 @@ Typography
 
 .notes {
   width: 90%;
-  margin: 30px auto;
+  margin: 30px;
   margin-bottom: 50px;
 }
 .notes p {
@@ -605,3 +613,12 @@ Typography
 .dont_include {
   display: none;
 }
+
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+
+

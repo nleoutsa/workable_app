@@ -105,12 +105,9 @@ $("input[type='checkbox']").click(function() {
 
 
 // VARIABLES
-  var current_frame, next_frame, previous_frame; // set up frames for each section of form
-  var right, opacity, scale; //frame properties which we will animate
-  var animating; //flag to prevent quick multi-click glitches
-
-
-
+  var current_frame, next_frame, previous_frame; //frame status for transitions
+  var right, opacity, scale; //properties of each frame which will be animated
+  var animating; //prevents glitchy use from double clicks...
 
 
   previous_frame = $("fieldset").eq(0);
@@ -118,7 +115,7 @@ $("input[type='checkbox']").click(function() {
   next_frame = $("fieldset").eq(0);
 
 
-// switch to correct fieldset when clicking on progress bar
+// switch to correct fieldset when clicking on progress bar (no animation)
   $("#progressbar li").click(function() {
 
 
@@ -145,11 +142,14 @@ $("input[type='checkbox']").click(function() {
 
       $("fieldset").hide();
 
+      current_frame.addClass('relative');
       current_frame.css({'right': '0%', 'opacity': opacity});
       current_frame.show();
 
   });
 
+
+  //switch frames with animation on button click.
   $(".next").click(function(){
     if(animating) return false;
     animating = true;
@@ -172,38 +172,55 @@ $("input[type='checkbox']").click(function() {
 
 
   $(".submit").click(function(){
-    return false; // do nothing with form for now... replace with email/download/pdf/copy... accordian menu later?
-
+    return false; // don't send form regularly. Only send via Rails controller actions...
   });
 
   function next_fieldset() {
 
     //activate next step on progressbar using the index of next_fs
     $("#progressbar li").eq($("fieldset").index(next_frame)).addClass("showing");
+
     //show the next fieldset
+
+    $('fieldset').addClass('absolute');
+    $('fieldset').removeClass('relative');
+
+    next_frame.removeClass('absolute');
+    next_frame.addClass('relative');
+
+
     next_frame.show();
 
+    //animate transition
     current_frame.animate({opacity: 0}, {
       step: function(now) {
         right = (now * 50) + "%";
         opacity = 1 - now;
         next_frame.css({'right':right, 'opacity': opacity});
       },
-      duration: 200,
+      duration: 200, // in milliseconds
       complete: function() {
-        current_frame.hide();
+        current_frame.hide(); //hide current frame
         animating = false;
       }
     });
+
   }
 
   function previous_fieldset() {
 
     //de-activate current step on progressbar
     $("#progressbar li").eq($("fieldset").index(current_frame)).removeClass("showing");
-    //show the previous fieldset
+
+    $('fieldset').addClass('absolute');
+    $('fieldset').removeClass('relative');
+
+    current_frame.removeClass('absolute');
+    current_frame.addClass('relative');
+
     previous_frame.show();
 
+    //animate transition
     current_frame.animate({opacity: 0}, {
       step: function(now) {
         right = ((1 - now) * 50) + "%";
@@ -214,8 +231,14 @@ $("input[type='checkbox']").click(function() {
       duration: 200, // ms
       complete: function() {
         current_frame.hide(); //hide current frame
+        current_frame.css('right','0px'); // reset frame position
+        previous_frame.removeClass('absolute');
+        previous_frame.addClass('relative');
         animating = false; // make buttons clickable again
       }
+
     });
+
+
   }
 });

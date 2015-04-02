@@ -27,7 +27,7 @@ class LettersController < ApplicationController
 
     if @letter.save
 
-## subscribe email address to mailing list:
+    ## subscribe email address to mailing list:
       @list_id = "56f301f9b6"
       gb = Gibbon::API.new
 
@@ -35,7 +35,11 @@ class LettersController < ApplicationController
         :id => @list_id,
         :email => {:email => params[:letter][:email]},
         :merge_vars => {:FNAME => params[:letter][:co_rep]}
-#        double_optin: false
+        # ,
+        # uncomment "double_optin: false" to automatically
+        # sign them up for mailing list. They won't receive
+        # confirmation email if you do this, though.
+        #        double_optin: false
         })
 
 
