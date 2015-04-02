@@ -240,7 +240,9 @@ Custom Styles:
 body {
   background-color: #eff1f2;
 }
+
 */
+
 
 p {
   height: 100%;
@@ -248,17 +250,16 @@ p {
 }
 
 /*custom font*/
-@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700);
 
 /*form styles*/
-#multi-step-form {
-}
 .multi-step {
 
   width: 35vw;
-  float: left;
+  float: none;
   text-align: center;
   position: relative; /* was relative */
+
 }
 #multi-step-form fieldset {
   background: white;
@@ -281,10 +282,11 @@ p {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  margin-top: 3px;
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
-  font-family: montserrat;
+  font-family: 'Open Sans', sans-serif;
   color: #2C3E50;
   font-size: 13px;
 }
@@ -299,10 +301,14 @@ p {
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
+  margin-top: 20px;
+
+  -webkit-appearance: none;
 }
 #multi-step-form .action-button:hover, #multi-step-form .action-button:focus {
-  background-color: #0F7F91;
+
   box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(51,182,203, 0.8);
+  -webkit-appearance: none;
 }
 /*headings*/
 .frame-title {
@@ -382,7 +388,7 @@ progressbar container
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.showing:before,  #progressbar li.showing:after{
-  background-color: #0F7F91;
+  background-color: #33b6cb;
   color: white;
 }
 /*
@@ -409,11 +415,13 @@ letter
   margin-right: 3.5vw;
   background-color: #fff;
 
+
 }
 
 #letter {
   height: 77.647059vw;
   width: 60vw;
+
   overflow: scroll;
 }
 
@@ -456,8 +464,7 @@ ul {
 }
 
 
-@media screen and (max-width: 1150px) {
-
+@media screen and (max-width: 1040px) {
 
   #multi-step-form {
     width: 90vw;
@@ -473,9 +480,8 @@ ul {
 
   #letter-container {
     margin: 0 6.5vw;
-    margin-top: 550px;
+    margin-top: 30px;
     margin-bottom: 100px;
-
 
   }
   #letter {
@@ -503,6 +509,11 @@ ul {
 
   ul  {
     margin: 0 10vw;
+  }
+
+
+  #multi-step-form fieldset {
+    position: relative; /* letter will not float below form if this is relative */
   }
 }
 
@@ -556,10 +567,12 @@ Typography
 .checkbox {
   float: left;
   width: 51%;
+  -webkit-appearance: none;
 }
 .checkboxlabel {
   float: left;
   width: 49%;
+  -webkit-appearance: none;
 }
 
 
@@ -583,6 +596,10 @@ Typography
 .notes {
   width: 90%;
   margin: 30px auto;
+  margin-bottom: 50px;
+}
+.notes p {
+  margin-bottom: 30px;
 }
 
 .dont_include {

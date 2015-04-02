@@ -66,8 +66,8 @@
       <%= f.text_field :pos_title, :placeholder => "Position" %>
     <div class="textlabel"><%= f.label :supervisor, "Supervisor" %></div>
       <%= f.text_field :supervisor, :placeholder => "Supervisor" %>
-    <div class="textlabel"><%= f.label :ap_wage, "Amount per Pay Period" %></div>
-      <%= f.text_field :ap_wage, :placeholder => "Amount per Pay Period" %>
+    <div class="textlabel"><%= f.label :ap_wage, "Salary or Pay Rate" %></div>
+      <%= f.text_field :ap_wage, :placeholder => "Salary or Pay Rate" %>
     <div class="textlabel"><%= f.label :hrs, "Hours per Week" %></div>
       <%= f.text_field :hrs, :placeholder => "Hours per Week" %>
 
@@ -117,10 +117,12 @@
     <div class="textlabel"><%= f.label :expiry_date, "Offer Expires On" %></div>
     <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
 
-    <div class="textlabel"><%= f.label :email, "* Please provide your email address so we may send a follow up email. We will never spam you or sell any of your data." %></div>
+    <div class="textlabel"><%= f.label :email, "* Email" %></div>
     <%= f.text_field :email, label: false, :placeholder => 'Your email address' %>
-
+    <div class="textlabel"><%= f.label :email, "We will never spam you or sell any of your data." %></div>
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <%= f.submit "Download", :class => "action-button" %>
   </fieldset>
 <% end %>
+
+
