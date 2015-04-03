@@ -3,5 +3,3 @@
 Easily create a professional offer letter and download as '.rtf' file.
 
 Simply fill out each field and watch as the letter is built in real time.
-
-<tt>rake doc:app</tt>.
