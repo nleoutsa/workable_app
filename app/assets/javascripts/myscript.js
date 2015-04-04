@@ -1,7 +1,24 @@
 
 $(document).ready(function () {
-// live print text in from form-fields into letter based on ids
 
+// jump to appropriate field when clicking on part of the letter
+  $('.placeholder').click(function() {
+    my_object = this;
+    classes = my_object.className;
+    placeholder_id = classes.split(" ").pop(); //grab last class from each placeholder
+    placeholder_id = '#' + placeholder_id;
+
+    current_id = ($(placeholder_id).parent().index() - 2);
+    last_id = current_id - 1;
+    next_id = current_id + 1;
+
+    goto_frame();
+
+    $(placeholder_id).focus();
+
+  });
+
+// live print text in from form-fields into letter based on ids
   $('input').focus(function() {
     inputField = document.activeElement;
     input_class = "." + inputField.id;
@@ -67,6 +84,7 @@ $(document).ready(function () {
 
 
 
+
 $("input[type='checkbox']").click(function() {
   checkbox_name = $(this).prop("name");
   checkbox_class = "." + checkbox_name;
@@ -106,7 +124,7 @@ $("input[type='checkbox']").click(function() {
 
 // VARIABLES
   var current_frame, next_frame, previous_frame; //frame status for transitions
-  var right, opacity, scale; //properties of each frame which will be animated
+  var right, opacity; // initiate opacity and right vars, used for animating frame transition
   var animating; //prevents glitchy use from double clicks...
 
 
@@ -118,33 +136,12 @@ $("input[type='checkbox']").click(function() {
 // switch to correct fieldset when clicking on progress bar (no animation)
   $("#progressbar li").click(function() {
 
-
     current_id = $(this).index();
     last_id = current_id - 1;
     next_id = current_id + 1;
 
-    if (last_id < 0) {
-      last_id = 0;
-    }
-    if (next_id > 4) {
-      next_id = 4;
-    }
+    goto_frame();
 
-      previous_frame = $("fieldset").eq(last_id);
-      current_frame = $("fieldset").eq(current_id);
-      next_frame = $("fieldset").eq(next_id);
-
-      $("#progressbar li").removeClass("showing");
-
-      for (x = 0; x <= current_id; x++) {
-        $("#progressbar li").eq(x).addClass("showing");
-      };
-
-      $("fieldset").hide();
-
-      current_frame.addClass('relative');
-      current_frame.css({'right': '0%', 'opacity': opacity});
-      current_frame.show();
 
   });
 
@@ -177,7 +174,7 @@ $("input[type='checkbox']").click(function() {
 
   function next_fieldset() {
 
-    //activate next step on progressbar using the index of next_fs
+    //activate next step on progressbar using the index of next_frame
     $("#progressbar li").eq($("fieldset").index(next_frame)).addClass("showing");
 
     //show the next fieldset
@@ -238,7 +235,33 @@ $("input[type='checkbox']").click(function() {
       }
 
     });
-
-
   }
+
+
+  function goto_frame() {
+
+    if (last_id < 0) {
+      last_id = 0;
+    }
+    if (next_id > 4) {
+      next_id = 4;
+    }
+
+      previous_frame = $("fieldset").eq(last_id);
+      current_frame = $("fieldset").eq(current_id);
+      next_frame = $("fieldset").eq(next_id);
+
+      $("#progressbar li").removeClass("showing");
+
+      for (x = 0; x <= current_id; x++) {
+        $("#progressbar li").eq(x).addClass("showing");
+      };
+
+      $("fieldset").hide();
+
+      current_frame.addClass('relative');
+      current_frame.css({'right': '0%', 'opacity': opacity});
+      current_frame.show();
+  }
+
 });
