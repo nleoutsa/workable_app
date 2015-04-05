@@ -455,7 +455,7 @@ letter
 
 .fixed {
   position: fixed;
-  top: 150px;
+  top: 10px;
 }
 
 ul {

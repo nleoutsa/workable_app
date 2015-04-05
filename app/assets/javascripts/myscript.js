@@ -181,7 +181,7 @@ $("input[type='checkbox']").click(function() {
   var offset = $('#multi-step-form').offset();
 
   $(window).scroll(function() {
-    var scroll_top = 150 + $(window).scrollTop();
+    var scroll_top = 10 + $(window).scrollTop();
 
     if (offset.top < scroll_top) {
       $('#multi-step-form').addClass('fixed');
