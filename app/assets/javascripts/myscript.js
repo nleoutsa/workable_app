@@ -1,4 +1,7 @@
-
+//TODO:
+// -click on paragraphs, move to appropriate frame
+// -format date correctly in .rtf
+// -when scrolling to corresponding part of letter, fix glitchiness...
 
 $(document).ready(function () {
 
@@ -40,23 +43,13 @@ $(document).ready(function () {
         $(checkbox_class).addClass('dont_include');
       };
     }
-
-/*
-      // rearrange date to mm/dd/yyyy
-      if (inputField.type == "date") {
-        old_date = text.split("-");
-        text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
-      }
-*/
-
-
-
   }
 
 // jump to appropriate field when clicking on part of the letter
   $('.placeholder').click(function() {
     //grab last class from each placeholder and set it as the id value used to access the corresponding form fields
     placeholder_id = "#" + this.className.split(" ").pop();
+    placeholder_class = "." + this.className.split(" ").pop();
 
     // set frame ids
     current_id = ($(placeholder_id).parent().index() - 2);
@@ -76,12 +69,19 @@ $(document).ready(function () {
 // live print text in from form-fields into letter based on ids
   $('input').focus(function() {
 
-    if (inputs[i].type == "text" || inputs[i].type == "date") {
-      inputField = document.activeElement;
-      input_class = "." + inputField.id;
-      text = inputField.value;
+    inputField = document.activeElement;
+    input_class = "." + inputField.id;
+
+    text = inputField.value;
 
 
+    $('#letter').animate({
+      scrollTop: $(input_class).offset().top - 735
+    }, 100);
+
+
+
+    if (inputField.type == "text" || inputField.type == "date") {
       //highlight on focus
       $(input_class).css("background-color", "rgba(51,182,203, 0.5)");
       $(input_class).css("text-decoration", "underline");
@@ -90,6 +90,8 @@ $(document).ready(function () {
 
       // live type on key release, change font color to black and leave an underline for unfilled inputs
       inputField.onkeyup = function(){
+
+
         text = inputField.value;
         if ((text == "") && (no_address < 0)) {
           //return to placeholder value
@@ -103,6 +105,7 @@ $(document).ready(function () {
       }
 
       inputField.click = function(){
+
         text = inputField.value;
         if ((text == "") && (no_address < 0)) {
           //return to placeholder value
@@ -119,7 +122,6 @@ $(document).ready(function () {
       //un-highlight
       $(this).focusout(function() {
         text = inputField.value;
-
 
 
         if ((text == "") && (no_address < 0)) {
@@ -140,7 +142,6 @@ $(document).ready(function () {
         };
 
         $(input_class).html(text);
-
       });
     }
   });
@@ -152,6 +153,12 @@ $(document).ready(function () {
 
 $("input[type='checkbox']").click(function() {
   checkbox_class = "." + this.id;
+
+
+  $('#letter').animate({
+    scrollTop: $(checkbox_class).offset().top - 735
+  }, 100);
+
   if (this.checked) {
     $(checkbox_class).removeClass('dont_include');
   }
