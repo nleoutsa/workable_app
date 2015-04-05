@@ -12,21 +12,18 @@ $(document).ready(function () {
       input_class = "." + inputs[i].id;
       text = inputs[i].value;
 
-      // rearrange date to mm/dd/yyyy
-      if (inputs[i].type == "date") {
-        old_date = text.split("-");
-        text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
-      }
-
-      no_address = (inputs[i].id).indexOf("address_2");
-
-      if ((text == "") && (no_address < 0)) {
+      if (text == "") {
         //return to placeholder value
         text = inputs[i].placeholder;
       //  text = "______________________";
         $(input_class).css("color", "rgba(0,0,0,0.3)");
       }
       else {
+        // rearrange date to mm/dd/yyyy
+        if (inputs[i].type == "date") {
+          old_date = text.split("-");
+          text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
+        }
         $(input_class).css("color", "#444");
       };
 
@@ -44,8 +41,13 @@ $(document).ready(function () {
       };
     }
 
-
-
+/*
+      // rearrange date to mm/dd/yyyy
+      if (inputField.type == "date") {
+        old_date = text.split("-");
+        text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
+      }
+*/
 
 
 
@@ -73,70 +75,74 @@ $(document).ready(function () {
 
 // live print text in from form-fields into letter based on ids
   $('input').focus(function() {
-    inputField = document.activeElement;
-    input_class = "." + inputField.id;
-    text = inputField.value;
 
-
-    //highlight on focus
-    $(input_class).css("background-color", "rgba(51,182,203, 0.5)");
-    $(input_class).css("text-decoration", "underline");
-    //
-    no_address = (inputField.id).indexOf("address_2");
-
-    // live type on key release, change font color to black and leave an underline for unfilled inputs
-    inputField.onkeyup = function(){
+    if (inputs[i].type == "text" || inputs[i].type == "date") {
+      inputField = document.activeElement;
+      input_class = "." + inputField.id;
       text = inputField.value;
-      if ((text == "") && (no_address < 0)) {
-        //return to placeholder value
-        text = inputField.placeholder;
-        $(input_class).css("color", "rgba(0,0,0,0.3)");
+
+
+      //highlight on focus
+      $(input_class).css("background-color", "rgba(51,182,203, 0.5)");
+      $(input_class).css("text-decoration", "underline");
+      //
+      no_address = (inputField.id).indexOf("address_2");
+
+      // live type on key release, change font color to black and leave an underline for unfilled inputs
+      inputField.onkeyup = function(){
+        text = inputField.value;
+        if ((text == "") && (no_address < 0)) {
+          //return to placeholder value
+          text = inputField.placeholder;
+          $(input_class).css("color", "rgba(0,0,0,0.3)");
+        }
+        else {
+          $(input_class).css("color", "#444");
+        };
+        $(input_class).html(text);
       }
-      else {
-        $(input_class).css("color", "#444");
-      };
-      $(input_class).html(text);
+
+      inputField.click = function(){
+        text = inputField.value;
+        if ((text == "") && (no_address < 0)) {
+          //return to placeholder value
+          text = inputField.placeholder;
+          $(input_class).css("color", "rgba(0,0,0,0.3)");
+        }
+        else {
+
+          $(input_class).css("color", "#444");
+        };
+        $(input_class).html(text);
+      }
+
+      //un-highlight
+      $(this).focusout(function() {
+        text = inputField.value;
+
+
+
+        if ((text == "") && (no_address < 0)) {
+          //return to placeholder value
+          text = inputField.placeholder;
+          $(input_class).css("color", "rgba(0,0,0,0.3)");
+          $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
+        }
+        else {
+          // rearrange date to mm/dd/yyyy
+          if (inputField.type == "date") {
+            old_date = text.split("-");
+            text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
+          }
+          $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
+          $(input_class).css("color", "#444");
+          $(input_class).css("text-decoration", "none");
+        };
+
+        $(input_class).html(text);
+
+      });
     }
-
-    inputField.click = function(){
-      text = inputField.value;
-      if ((text == "") && (no_address < 0)) {
-        //return to placeholder value
-        text = inputField.placeholder;
-        $(input_class).css("color", "rgba(0,0,0,0.3)");
-      }
-      else {
-        $(input_class).css("color", "#444");
-      };
-      $(input_class).html(text);
-    }
-
-    //un-highlight
-    $(this).focusout(function() {
-      text = inputField.value;
-
-      // rearrange date to mm/dd/yyyy
-      if (inputField.type == "date") {
-        old_date = text.split("-");
-        text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
-      }
-
-      if ((text == "") && (no_address < 0)) {
-        //return to placeholder value
-        text = inputField.placeholder;
-        $(input_class).css("color", "rgba(0,0,0,0.3)");
-        $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
-      }
-      else {
-
-        $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
-        $(input_class).css("color", "#444");
-        $(input_class).css("text-decoration", "none");
-      };
-
-      $(input_class).html(text);
-
-    });
   });
 
 
