@@ -1,9 +1,6 @@
-//TODO:
-// -click on paragraphs, move to appropriate frame
-// -format date correctly in .rtf
-// -when scrolling to corresponding part of letter, fix glitchiness...
 
 $(document).ready(function () {
+
 
   // fill letter when reloading due to errors...
   var inputs = document.getElementsByTagName('input');
@@ -73,13 +70,24 @@ $(document).ready(function () {
     input_class = "." + inputField.id;
 
     text = inputField.value;
-    input_class_offset = $(input_class).offset()
 
-/*
-    $('#letter').animate({
-      scrollTop: input_class_offset.top - 735
-    }, 100);
-*/
+    // set scroll offset for inputs
+    input_class_offset = $(input_class).offset().top - 735;
+
+    // because Chrome and Firefox/IE use different methods to get scroll distance...
+    scroll_position = ((document.documentElement.scrollTop > document.body.scrollTop) ? document.documentElement.scrollTop : document.body.scrollTop);
+    // scroll to start of tool
+    if ((scroll_position < 550) || ((input_class_offset < 200) && (input_class_offset > -500))) {
+      $('html, body').animate({
+        scrollTop: 550
+      }, 100);
+    }
+    // scroll to appropriate letter section on form field focus
+    if ((input_class_offset > 200) || (input_class_offset < -100)) {
+      $('#letter').animate({
+        scrollTop: input_class_offset
+      }, 100);
+    }
 
 
     if (inputField.type == "text" || inputField.type == "date") {
