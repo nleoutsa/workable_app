@@ -1,4 +1,5 @@
 
+
 class LettersController < ApplicationController
 
   require 'rtf'

@@ -1,3 +1,4 @@
+
 class Letter < ActiveRecord::Base
 
 
