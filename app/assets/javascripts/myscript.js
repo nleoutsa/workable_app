@@ -1,22 +1,74 @@
 
 $(document).ready(function () {
 
+  // fill letter when reloading due to errors...
+  var inputs = document.getElementsByTagName('input');
+  // fill parts from text field values
+  for (i = 0; i < inputs.length; i++) {
+
+
+    if (inputs[i].type == "text" || inputs[i].type == "date") {
+      input_class = "." + inputs[i].id;
+      text = inputs[i].value;
+
+      // rearrange date to mm/dd/yyyy
+      if (inputs[i].type == "date") {
+        old_date = text.split("-");
+        text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
+      }
+
+      no_address = (inputs[i].id).indexOf("address_2");
+
+      if ((text == "") && (no_address < 0)) {
+        //return to placeholder value
+        text = inputs[i].placeholder;
+      //  text = "______________________";
+        $(input_class).css("color", "rgba(0,0,0,0.3)");
+      }
+      else {
+        $(input_class).css("color", "#444");
+      };
+
+      $(input_class).html(text);
+    }
+    else if (inputs[i].type == "checkbox") {
+      checkbox_id = "#" + inputs[i].id;
+      checkbox_class = '.' + inputs[i].id;
+
+      if ($(checkbox_id).prop('checked')) {
+        $(checkbox_class).removeClass('dont_include');
+      }
+      else {
+        $(checkbox_class).addClass('dont_include');
+      };
+    }
+
+
+
+
+
+
+  }
+
 // jump to appropriate field when clicking on part of the letter
   $('.placeholder').click(function() {
-    my_object = this;
-    classes = my_object.className;
-    placeholder_id = classes.split(" ").pop(); //grab last class from each placeholder
-    placeholder_id = '#' + placeholder_id;
+    //grab last class from each placeholder and set it as the id value used to access the corresponding form fields
+    placeholder_id = "#" + this.className.split(" ").pop();
 
+    // set frame ids
     current_id = ($(placeholder_id).parent().index() - 2);
     last_id = current_id - 1;
     next_id = current_id + 1;
 
+    // go to current_id frame
     goto_frame();
 
+    // focus on appropriate field
     $(placeholder_id).focus();
 
   });
+
+
 
 // live print text in from form-fields into letter based on ids
   $('input').focus(function() {
@@ -37,7 +89,6 @@ $(document).ready(function () {
       if ((text == "") && (no_address < 0)) {
         //return to placeholder value
         text = inputField.placeholder;
-      //  text = "______________________";
         $(input_class).css("color", "rgba(0,0,0,0.3)");
       }
       else {
@@ -51,22 +102,27 @@ $(document).ready(function () {
       if ((text == "") && (no_address < 0)) {
         //return to placeholder value
         text = inputField.placeholder;
-      //  text = "______________________";
         $(input_class).css("color", "rgba(0,0,0,0.3)");
       }
       else {
         $(input_class).css("color", "#444");
       };
-      //$(input_class).html(text);
+      $(input_class).html(text);
     }
 
     //un-highlight
     $(this).focusout(function() {
       text = inputField.value;
+
+      // rearrange date to mm/dd/yyyy
+      if (inputField.type == "date") {
+        old_date = text.split("-");
+        text = old_date[1] + "/" + old_date[2] + "/" + old_date[0];
+      }
+
       if ((text == "") && (no_address < 0)) {
         //return to placeholder value
         text = inputField.placeholder;
-      //  text = "______________________";
         $(input_class).css("color", "rgba(0,0,0,0.3)");
         $(input_class).css("background-color", "rgba(51,182,203, 0.0)");
       }
@@ -85,10 +141,11 @@ $(document).ready(function () {
 
 
 
+
+
 $("input[type='checkbox']").click(function() {
-  checkbox_name = $(this).prop("name");
-  checkbox_class = "." + checkbox_name;
-  if ($(this).prop('checked')) {
+  checkbox_class = "." + this.id;
+  if (this.checked) {
     $(checkbox_class).removeClass('dont_include');
   }
   else {
@@ -97,10 +154,8 @@ $("input[type='checkbox']").click(function() {
 });
 
 
-// TODO:
-  // Focus on correct field when clicking on letter
 
-  // scroll to first mention of field in letter on focus/typing
+// TODO scroll to first mention of field in letter on focus/typing
 
 
 
@@ -247,21 +302,21 @@ $("input[type='checkbox']").click(function() {
       next_id = 4;
     }
 
-      previous_frame = $("fieldset").eq(last_id);
-      current_frame = $("fieldset").eq(current_id);
-      next_frame = $("fieldset").eq(next_id);
+    previous_frame = $("fieldset").eq(last_id);
+    current_frame = $("fieldset").eq(current_id);
+    next_frame = $("fieldset").eq(next_id);
 
-      $("#progressbar li").removeClass("showing");
+    $("#progressbar li").removeClass("showing");
 
-      for (x = 0; x <= current_id; x++) {
-        $("#progressbar li").eq(x).addClass("showing");
-      };
+    for (x = 0; x <= current_id; x++) {
+      $("#progressbar li").eq(x).addClass("showing");
+    };
 
-      $("fieldset").hide();
+    $("fieldset").hide();
 
-      current_frame.addClass('relative');
-      current_frame.css({'right': '0%', 'opacity': opacity});
-      current_frame.show();
+    current_frame.addClass('relative');
+    current_frame.css({'right': '0%', 'opacity': opacity});
+    current_frame.show();
   }
 
 });
