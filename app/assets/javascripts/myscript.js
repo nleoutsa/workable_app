@@ -73,12 +73,13 @@ $(document).ready(function () {
     input_class = "." + inputField.id;
 
     text = inputField.value;
+    input_class_offset = $(input_class).offset()
 
-
+/*
     $('#letter').animate({
-      scrollTop: $(input_class).offset().top - 735
+      scrollTop: input_class_offset.top - 735
     }, 100);
-
+*/
 
 
     if (inputField.type == "text" || inputField.type == "date") {
@@ -153,11 +154,6 @@ $(document).ready(function () {
 
 $("input[type='checkbox']").click(function() {
   checkbox_class = "." + this.id;
-
-
-  $('#letter').animate({
-    scrollTop: $(checkbox_class).offset().top - 735
-  }, 100);
 
   if (this.checked) {
     $(checkbox_class).removeClass('dont_include');
