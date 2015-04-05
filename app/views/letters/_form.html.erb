@@ -193,13 +193,13 @@
     <h2 class="frame-title">Other Information</h2>
     <h3 class="frame-subtitle">Step 5 of 5</h3>
 
-    <div class="textlabel"><%= f.label :co_rep, "Signed By" %></div>
-    <%= f.text_field :co_rep, :placeholder => "Signed By" %>
     <div class="textlabel"><%= f.label :start_date, "Start Date" %></div>
       <%= f.date_field :start_date, :placeholder => "Start Date" %>
     <div class="textlabel"><%= f.label :expiry_date, "Offer Expires On" %></div>
     <%= f.date_field :expiry_date, :placeholder => "Offer Expires On" %>
 
+    <div class="textlabel"><%= f.label :co_rep, "Signed By" %></div>
+    <%= f.text_field :co_rep, :placeholder => "Signed By" %>
     <div class="textlabel"><%= f.label :email, "* Email" %></div>
     <%= f.text_field :email, label: false, :placeholder => 'Your email address' %>
     <div class="textlabel"><%= f.label :email, "We will never spam you or sell any of your data." %></div>
