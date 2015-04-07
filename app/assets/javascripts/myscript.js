@@ -77,24 +77,25 @@ $(document).ready(function () {
     // because Chrome and Firefox/IE use different methods to get scroll distance...
     scroll_position = ((document.documentElement.scrollTop > document.body.scrollTop) ? document.documentElement.scrollTop : document.body.scrollTop);
     // scroll to start of tool
-    if ((scroll_position < 550) || ((input_class_offset < 200) && (input_class_offset > -500))) {
-      $('html, body').animate({
-        scrollTop: 550
-      }, 100);
-    }
-    // scroll to appropriate letter section on form field focus
-    if ((input_class_offset > 200) || (input_class_offset < -100)) {
-      $('#letter').animate({
-        scrollTop: input_class_offset
-      }, 100);
-    }
-
 
     if (inputField.type == "text" || inputField.type == "date") {
       //highlight on focus
       $(input_class).css("background-color", "rgba(51,182,203, 0.5)");
       $(input_class).css("text-decoration", "underline");
       //
+
+      if ((scroll_position < 550) || ((input_class_offset < 200) && (input_class_offset > -500))) {
+        $('html, body').animate({
+          scrollTop: 550
+        }, 100);
+      }
+      // scroll to appropriate letter section on form field focus
+      if ((input_class_offset > 200) || (input_class_offset < -100)) {
+        $('#letter').animate({
+          scrollTop: input_class_offset
+        }, 100);
+      }
+
       no_address = (inputField.id).indexOf("address_2");
 
       // live type on key release, change font color to black and leave an underline for unfilled inputs
@@ -163,6 +164,7 @@ $(document).ready(function () {
 $("input[type='checkbox']").click(function() {
   checkbox_class = "." + this.id;
 
+
   if (this.checked) {
     $(checkbox_class).removeClass('dont_include');
   }
@@ -228,6 +230,7 @@ $("input[type='checkbox']").click(function() {
     next_frame = $(this).parent().next();
 
     next_fieldset();
+
   });
 
   $(".previous").click(function(){

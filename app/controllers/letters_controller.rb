@@ -83,6 +83,13 @@ class LettersController < ApplicationController
       @drug_test = params[:drug_test]
       @bg_check = params[:bg_check]
 
+      #corrent date formats:
+      @old_start_date = @start_date.split("-")
+      @start_date = @old_start_date[1] + "/" + @old_start_date[2] + "/" + @old_start_date[0]
+
+      @old_expiry_date = @expiry_date.split("-")
+      @expiry_date = @old_expiry_date[1] + "/" + @old_expiry_date[2] + "/" + @old_expiry_date[0]
+
     # set styles for different sections of .rtf file...
       styles = {}
       styles['Para_Style'] = ParagraphStyle.new
